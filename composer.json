@@ -1,0 +1,36 @@
+{
+    "name": "codymoorhouse/secretary",
+    "description": "A note sharing library that lets users interact with eachother using file uploads and comments.",
+    "keywords": ["notes", "files", "comments", "secretary", "laravel"],
+    "homepage": "https://github.com/codymoorhouse/secretary",
+    "type": "library",
+    "license": "ISC",
+    "authors": [
+        {
+            "name": "Cody Moorhouse",
+            "email": "cody.moorhouse@icloud.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/database": "~5.1",
+        "illuminate/support": "~5.1",
+        "illuminate/routing": "~5.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "CodyMoorhouse\\Secretary\\": "src/"
+        }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "CodyMoorhouse\\Secretary\\SecretaryServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
