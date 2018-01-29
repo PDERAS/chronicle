@@ -8,7 +8,8 @@ composer require codymoorhouse/secretary:0.0.0-dev
 2. [Installation](#installation)
 3. [Requirements](#requirements)
 4. [Instructions](#instructions)
-5. [License](#license)
+5. [Usage](#usage)
+6. [License](#license)
 
 ## About
 This package is designed for Laravel that lets users interact with eachother using notes that allow for file uploads and comments. Notes are tracked and held in sections and can have multiple files/comments attached.
@@ -34,6 +35,9 @@ Before you run the migrations, you can look at the `config/secretary.php` file a
 ```
 php artisan migrate
 ```
+
+## Usage
+Under construction
 
 ## License
 This project is covered under the MIT License. Feel free to use it wherever you like.
