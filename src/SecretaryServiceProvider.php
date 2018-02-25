@@ -31,6 +31,9 @@ class SecretaryServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/config/secretary.php' => config_path('secretary.php'),
         ]);
+        $this->publishes([
+            __DIR__.'/assets/compiled/app.js' => public_path('vendor/secretary'),
+        ], 'public');
 
         if ($this->app->runningInConsole()) {
             $this->commands([

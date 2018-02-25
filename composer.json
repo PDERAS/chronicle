@@ -17,6 +17,9 @@
         "illuminate/support": "~5.1",
         "illuminate/routing": "~5.1"
     },
+    "scripts": {
+        "post-update-cmd": "php artisan vendor:publish --tag=public --provider=\"CodyMoorhouse\Secretary\SecretaryServiceProvider\" --force"
+    },
     "autoload": {
         "psr-4": {
             "CodyMoorhouse\\Secretary\\": "src/"
