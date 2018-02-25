@@ -20,7 +20,7 @@ const actions = {
         commit('setErrors', { errors: 'reset' });
         commit('removeLoading', loader);
 
-        if(typeof response.response == 'undefined') {
+        if (typeof response.response == 'undefined') {
             if (response.data && response.data.message) {
                 commit('setToast', response.data.message);
             }

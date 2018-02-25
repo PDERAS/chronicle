@@ -4,11 +4,12 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 /* Modules */
-import template from "./modules/template"
+import notes from "./modules/notes"
 
 export default new Vuex.Store({
     modules: {
-        template
+        notes,
+        sections
     },
 });
 
