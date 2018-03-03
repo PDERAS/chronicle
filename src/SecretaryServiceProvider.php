@@ -32,8 +32,8 @@ class SecretaryServiceProvider extends ServiceProvider
             __DIR__.'/config/secretary.php' => config_path('secretary.php'),
         ]);
         $this->publishes([
-            __DIR__.'/assets/compiled/app.js' => public_path('vendor/secretary.js'),
-        ], 'public');
+            __DIR__.'/assets/js/components' => base_path('resources/assets/js/components/secretary'),
+        ], 'secretary-components');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
