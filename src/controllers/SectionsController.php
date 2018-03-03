@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Schema;
 use CodyMoorhouse\Secretary\Models\Section;
 
 /* Requests */
-use CodyMoorhouse\Secretary\Requests\Sections\GetRequest;
 use CodyMoorhouse\Secretary\Requests\Sections\IndexRequest;
 
 class SectionsController extends Controller
@@ -21,7 +20,6 @@ class SectionsController extends Controller
      * Gets a section
      *
      * @param CodyMoorhouse\Secretary\Models\Sections\Section $section
-     * @param CodyMoorhouse\Secretary\Requests\Sections\GetRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -71,6 +69,28 @@ class SectionsController extends Controller
                 $sections = $request->has('paginate') ? $sections_query->paginate($request->paginate) : $sections_query->get();
 
                 return Response::json($sections);
+            }, config('secretary.db_attempts'));
+        } catch (Exception $e) {
+            return Response::json([
+                'sections'  =>  [$e]
+            ]);
+        }
+    }
+
+    /**
+     * Gets the notes for a section
+     *
+     * @param CodyMoorhouse\Secretary\Models\Sections\Section $section
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getNotes(Section $section)
+    {
+        try {
+            return DB::transaction(function() use ($section) {
+                return Response::json([
+                    'notes'   =>  $section->notes
+                ]);
             }, config('secretary.db_attempts'));
         } catch (Exception $e) {
             return Response::json([

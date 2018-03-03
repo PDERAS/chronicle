@@ -2,10 +2,10 @@
     <div id="secretary" class="secretary">
         <template v-if="section">
             <template v-if="showDisplay">
-                <secretary-display ref-slug="refSlug" :section="section" />
+                <secretary-display :ref-slug="refSlug" :section="section" />
             </template>
             <template v-if="showInput">
-                <secretary-input ref-slug="refSlug" :section="section" />
+                <secretary-input :ref-slug="refSlug" :section="section" />
             </template>
         </template>
     </div>

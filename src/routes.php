@@ -24,6 +24,7 @@ Route::group(['middleware' => ['web', 'auth']], function() {
     ]]);
 
     Route::group([ 'prefix' => 'sections' ], function() use ($controllers) {
+        Route::get('/{section}/notes', $controllers . 'SectionsController@getNotes');
         Route::get('/{section}', $controllers . 'SectionsController@get');
         Route::get('/', $controllers . 'SectionsController@index');
     });
