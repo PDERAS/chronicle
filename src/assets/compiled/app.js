@@ -21931,32 +21931,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* General */
 var main = "./components/";
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Secretary', __webpack_require__(361)(main + '/Secretary'));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('Secretary', __webpack_require__(376)(main + 'Secretary'));
 
 /***/ }),
-/* 361 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./components/Secretary": 362
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 361;
-
-/***/ }),
+/* 361 */,
 /* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -23470,6 +23448,29 @@ if (false) {
     require("vue-hot-reload-api")      .rerender("data-v-46747254", module.exports)
   }
 }
+
+/***/ }),
+/* 376 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./components/Secretary": 362
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 376;
 
 /***/ })
 /******/ ]);
