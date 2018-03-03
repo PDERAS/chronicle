@@ -78,6 +78,7 @@ class Note extends Model
      */
     public function user()
     {
-        return $this->belongsTo(config('secretary.users_model'));
+        return $this->belongsTo(config('secretary.users_model'))
+            ->select(config('secretary.users_table_name') . ' as name');
     }
 }

@@ -93,8 +93,7 @@ class SectionsController extends Controller
                 $notes = $section->notes->where('section_ref_slug', $request->slug);
 
                 foreach ($notes as $note) {
-                    $user = $note->user;
-                    $note->user->name = $user[config('secretary.users_table_name')];
+                    $note->user;
                 }
 
                 return Response::json([
