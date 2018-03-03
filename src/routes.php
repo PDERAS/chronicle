@@ -21,7 +21,9 @@ Route::group(['middleware' => ['web', 'auth']], function() {
     Route::resource('/notes', $namespace . 'NotesController', [ 'only' => [
         'destroy', 'store', 'update'
     ]]);
-    Route::resource('/sections', $namespace . 'SectionsController', [ 'only' => [
-        'index'
-    ]]);
+
+    Route::group([ 'prefix' => 'sections' ], function() {
+        Route::get('/{section}', $namespace . 'SectionsController@get');
+        Route::get('/', $namespace . 'SectionsController@index');
+    });
 });

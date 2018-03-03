@@ -11,10 +11,35 @@ use Illuminate\Support\Facades\Schema;
 use CodyMoorhouse\Secretary\Models\Section;
 
 /* Requests */
+use CodyMoorhouse\Secretary\Requests\Sections\GetRequest;
 use CodyMoorhouse\Secretary\Requests\Sections\IndexRequest;
 
 class SectionsController extends Controller
 {
+
+    /**
+     * Gets a section by the tag.
+     *
+     * @param CodyMoorhouse\Secretary\Models\Sections\Section $section
+     * @param CodyMoorhouse\Secretary\Requests\Sections\GetRequest $request
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function get(GetRequest $request)
+    {
+        try {
+            return DB::transaction(function() use ($request) {
+                return Response::json([
+                    'section'   =>  Section::where('tag', $request->tag)->first()
+                ]);
+            }, config('secretary.db_attempts'));
+        } catch (Exception $e) {
+            return Response::json([
+                'sections'  =>  [$e]
+            ]);
+        }
+    }
+
     /**
      * Get a listing of sections based on the $request input parameters.
      *

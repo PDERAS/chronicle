@@ -22,14 +22,14 @@ class Section extends Model
      * @var array
      */
     protected $fillable = [
-        'title',
-        'tag',
-        'commenting',
         'access_type',
-        'type',
-        'requires_approval',
         'allow_atachments',
         'allow_tasks',
+        'commenting',
+        'requires_approval',
+        'title',
+        'tag',
+        'type',
     ];
 
     /**
@@ -38,6 +38,7 @@ class Section extends Model
      * @var array
      */
     protected $hidden = [
+        'id',
         'updated_at',
     ];
 
