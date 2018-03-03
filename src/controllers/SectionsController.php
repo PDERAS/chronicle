@@ -12,6 +12,7 @@ use CodyMoorhouse\Secretary\Models\Section;
 
 /* Requests */
 use CodyMoorhouse\Secretary\Requests\Sections\IndexRequest;
+use CodyMoorhouse\Secretary\Requests\Sections\NotesRequest;
 
 class SectionsController extends Controller
 {
@@ -80,14 +81,15 @@ class SectionsController extends Controller
     /**
      * Gets the notes for a section
      *
+     * @param CodyMoorhouse\Secretary\Requests\Sections\NotesRequest $request
      * @param CodyMoorhouse\Secretary\Models\Sections\Section $section
      *
      * @return \Illuminate\Http\Response
      */
-    public function getNotes(Section $section)
+    public function getNotes(NotesRequest $request, Section $section)
     {
         try {
-            return DB::transaction(function() use ($section) {
+            return DB::transaction(function() use ($request, $section) {
                 return Response::json([
                     'notes'   =>  $section->notes
                 ]);
