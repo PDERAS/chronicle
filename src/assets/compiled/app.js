@@ -15418,8 +15418,8 @@ window.Vue = __webpack_require__(65);
 
 
 
-var SecretaryApp = new Vue({
-  el: '#secretary-app',
+var secretary = new Vue({
+  el: '#secretary',
   store: __WEBPACK_IMPORTED_MODULE_0__store__["a" /* default */]
 });
 
@@ -22159,7 +22159,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "secretary" },
+    { staticClass: "secretary", attrs: { id: "secretary" } },
     [
       _vm.showDisplay ? _c("display-controller") : _vm._e(),
       _vm._v(" "),

@@ -11,7 +11,7 @@ window.Vue = require('vue');
 
 import store from './store';
 
-const SecretaryApp = new Vue({
-    el: '#secretary-app',
+const secretary = new Vue({
+    el: '#secretary',
     store
 });

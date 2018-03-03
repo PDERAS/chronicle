@@ -1,5 +1,5 @@
 <template>
-    <div class="secretary">
+    <div id="secretary" class="secretary">
         <display-controller v-if="showDisplay" />
         <input-controller v-if="showInput" />
     </div>
