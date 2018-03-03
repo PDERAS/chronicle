@@ -22,7 +22,7 @@ Route::group(['middleware' => ['web', 'auth']], function() {
         'destroy', 'store', 'update'
     ]]);
 
-    Route::group([ 'prefix' => 'sections' ], function() {
+    Route::group([ 'prefix' => 'sections' ], function() use ($namespace) {
         Route::get('/{section}', $namespace . 'SectionsController@get');
         Route::get('/', $namespace . 'SectionsController@index');
     });
