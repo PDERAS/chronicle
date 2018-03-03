@@ -40,7 +40,7 @@
         },
 
         created() {
-            axios.get('/section/' + this.tag);
+            axios.get('/sections/' + this.tag);
         }
     }
 
