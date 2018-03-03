@@ -38,6 +38,7 @@ class Note extends Model
      * @var array
      */
     protected $hidden = [
+        'section_ref_slug',
         'deleted_at',
         'updated_at',
     ];
