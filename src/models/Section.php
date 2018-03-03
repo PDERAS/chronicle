@@ -43,6 +43,16 @@ class Section extends Model
     ];
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'tag';
+    }
+
+    /**
      * Create a new instance of the given model.
      *
      * @var array $attributes

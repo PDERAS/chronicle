@@ -18,19 +18,19 @@ class SectionsController extends Controller
 {
 
     /**
-     * Gets a section by the tag.
+     * Gets a section
      *
      * @param CodyMoorhouse\Secretary\Models\Sections\Section $section
      * @param CodyMoorhouse\Secretary\Requests\Sections\GetRequest $request
      *
      * @return \Illuminate\Http\Response
      */
-    public function get(GetRequest $request)
+    public function get(Section $section)
     {
         try {
-            return DB::transaction(function() use ($request) {
+            return DB::transaction(function() {
                 return Response::json([
-                    'section'   =>  Section::where('tag', $request->tag)->first()
+                    'section'   =>  $section
                 ]);
             }, config('secretary.db_attempts'));
         } catch (Exception $e) {
