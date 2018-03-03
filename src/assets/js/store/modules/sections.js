@@ -14,26 +14,25 @@ const getters = {
 
 // Actions
 const actions = {
-    actionFunction({ state, commit, dispatch}) {
-        commit('addLoading', 'action-event', { root: true });
+    get({ state, commit, dispatch}, id) {
+        var loader = 'get-section';
+        commit('addLoading', loader, { root: true });
 
-        var url = 'url';
+        var url = '/sections/' + id;
 
         axios.get(url)
             .then(response => {
-                // Set data
-                commit('removeLoading', 'action-event', { root: true });
+                commit('setActive', response.section);
                 dispatch('finishAjaxCall', {
-                    loader: 'action-event',
-                    model: 'template',
+                    loader: loader,
+                    model: 'section',
                     response: response
                 }, { root: true });
             })
             .catch(errors => {
-                commit('removeLoading', 'action-event', { root: true });
                 dispatch('finishAjaxCall', {
-                    loader: 'action-event',
-                    model: 'template',
+                    loader: loader,
+                    model: 'section',
                     response: errors,
                 }, { root: true });
             });
@@ -42,8 +41,12 @@ const actions = {
 
 // Mutations
 const mutations = {
-    mutatorFunction(state) {
-        // Do something...
+    setActive(state, section) {
+        state.active = section;
+    },
+
+    resetActive(state) {
+        state.active = {};
     }
 }
 

@@ -1,5 +1,5 @@
 import Vue from 'vue';
 
 /* General */
-var location = "./components/";
-Vue.component('Section', require(general + '/Section'));
+var main = "./components/";
+Vue.component('Secretary', require(main + '/Secretary'));
