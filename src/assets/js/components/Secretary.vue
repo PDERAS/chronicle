@@ -40,7 +40,7 @@
         },
 
         created() {
-
+            axios.get('/section', params: { tag: this.tag });
         }
     }
 
