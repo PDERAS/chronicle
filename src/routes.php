@@ -5,12 +5,14 @@ namespace CodyMoorhouse\Secretary;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['web', 'auth']], function() {
-    $namespace = 'CodyMoorhouse\\Secretary\\Controllers\\';
+    $namespace = 'CodyMoorhouse\\Secretary\\';
+    $controllers = $namespace . 'Controllers\\';
+    $models = $namespace . 'Models\\';
 
-    Route::resource('/comments', $namespace . 'CommentsController', [ 'only' => [
+    Route::resource('/comments', $controllers . 'CommentsController', [ 'only' => [
         'destroy', 'store', 'update'
     ]]);
-    Route::resource('/media', $namespace . 'MediaController', [
+    Route::resource('/media', $controllers . 'MediaController', [
         'parameters' => [
             'media' => 'media'
         ],
@@ -18,12 +20,12 @@ Route::group(['middleware' => ['web', 'auth']], function() {
             'destroy', 'store', 'update'
         ]
     ]);
-    Route::resource('/notes', $namespace . 'NotesController', [ 'only' => [
+    Route::resource('/notes', $controllers . 'NotesController', [ 'only' => [
         'destroy', 'store', 'update'
     ]]);
 
-    Route::group([ 'prefix' => 'sections' ], function() use ($namespace) {
-        Route::get('/{section}', $namespace . 'SectionsController@get');
-        Route::get('/', $namespace . 'SectionsController@index');
+    Route::group([ 'prefix' => 'sections' ], function($models . 'Section') use ($controllers) {
+        Route::get('/{section}', $controllers . 'SectionsController@get');
+        Route::get('/', $controllers . 'SectionsController@index');
     });
 });
