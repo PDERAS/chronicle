@@ -28,7 +28,7 @@ class SectionsController extends Controller
     public function get(Section $section)
     {
         try {
-            return DB::transaction(function() {
+            return DB::transaction(function() use ($section) {
                 return Response::json([
                     'section'   =>  $section
                 ]);
