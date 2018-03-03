@@ -72,4 +72,12 @@ class Note extends Model
     {
         return $this->hasMany('CodyMoorhouse\Secretary\Models\Media');
     }
+
+    /**
+     * Gets the user that the note belongs to
+     */
+    public function user()
+    {
+        return $this->belongsTo(config('secretary.users_model'));
+    }
 }

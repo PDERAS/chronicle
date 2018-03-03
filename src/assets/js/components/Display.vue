@@ -1,8 +1,26 @@
 <template>
     <div class="secretary-display">
-        <div class="note-wrapper" v-for="note in notes">
-            <div>{{ note.description }}</div>
-            <div>{{ note.created_at }}</div>
+        <div class="secretary-header">
+            <div class="secretary-header-">
+                {{ section.title }}
+            </div>
+            <div class="secretary-header-btns">
+
+            </div>
+        </div>
+        <div class="secretary-content">
+            <div class="secretary-note-wrapper" v-for="note in notes">
+                <div class="secretary-note-header">
+                    <span>{{ note.user.name }}</span>
+                    <span>{{ note.created_at }}</span>
+                </div>
+                <div class="secretary-note-content">
+                    <div>{{ note.description }}</div>
+                </div>
+                <div class="secretary-note-btns">
+
+                </div>
+            </div>
         </div>
     </div>
 </template>

@@ -90,8 +90,15 @@ class SectionsController extends Controller
     {
         try {
             return DB::transaction(function() use ($request, $section) {
+                $notes = $section->notes->where('section_ref_slug', $request->slug);
+
+                foreach ($notes as $note) {
+                    $user = $note->user;
+                    $note->user->name = $user[config('secretary.users_table_name')];
+                }
+
                 return Response::json([
-                    'notes'   =>  $section->notes->where('section_ref_slug', $request->slug)
+                    'notes'   =>  $notes
                 ]);
             }, config('secretary.db_attempts'));
         } catch (Exception $e) {

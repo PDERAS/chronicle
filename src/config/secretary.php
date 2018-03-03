@@ -14,6 +14,7 @@ return [
     'users_table'           =>  'users',
     'users_table_id'        =>  'id',
     'users_table_name'      =>  'name',
+    'users_model'           =>  'App\User',
 
     /* Optional */
     'companies_table'       =>  'companies',
