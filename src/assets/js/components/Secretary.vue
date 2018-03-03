@@ -1,20 +1,26 @@
 <template>
     <div id="secretary" class="secretary">
-        <display-controller v-if="showDisplay" />
-        <input-controller v-if="showInput" />
+        <template v-if="section">
+            <template v-if="showDisplay">
+                <secretary-display ref-slug="refSlug" :section="section" />
+            </template>
+            <template v-if="showInput">
+                <secretary-input ref-slug="refSlug" :section="section" />
+            </template>
+        </template>
     </div>
 </template>
 
 <script>
-    import DisplayController from './displays/DisplayController';
-    import InputController from './inputs/InputController';
+    import SecretaryDisplay from './Display';
+    import SecretaryInput from './Input';
 
     export default {
         name: 'Secretary',
 
         components: {
-            DisplayController,
-            InputController
+            SecretaryDisplay,
+            SecretaryInput
         },
 
         props: {
@@ -39,9 +45,14 @@
             }
         },
 
+        data: () => ({
+            section: null
+        }),
+
         created() {
-            axios.get('/sections/' + this.tag);
+            axios.get('/sections/' + this.tag).then(r => {
+                this.section = r.data.section;
+            });
         }
     }
-
 </script>
