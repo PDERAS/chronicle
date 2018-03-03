@@ -91,7 +91,7 @@ class SectionsController extends Controller
         try {
             return DB::transaction(function() use ($request, $section) {
                 return Response::json([
-                    'notes'   =>  $section->notes
+                    'notes'   =>  $section->notes->where('section_ref_slug', $request->slug)
                 ]);
             }, config('secretary.db_attempts'));
         } catch (Exception $e) {
