@@ -1,5 +1,9 @@
 <template>
     <div class="secretary-display">
+        <div class="note-wrapper" v-for="note in notes">
+            <div>{{ note.description }}</div>
+            <div>{{ note.created_at }}</div>
+        </div>
     </div>
 </template>
 
@@ -24,15 +28,21 @@
         }),
 
         created() {
-            var url = '/sections/' + this.section.tag + '/notes';
-            var config = {
-                params: {
-                    slug: this.refSlug
-                }
-            };
-            axios.get(url, config).then(r => {
-                this.notes = r.data.notes;
-            });
+            this.getNotes();
+        },
+
+        methods: {
+            getNotes() {
+                var url = '/sections/' + this.section.tag + '/notes';
+                var config = {
+                    params: {
+                        slug: this.refSlug
+                    }
+                };
+                axios.get(url, config).then(r => {
+                    this.notes = r.data.notes;
+                });
+            }
         }
     }
 </script>
