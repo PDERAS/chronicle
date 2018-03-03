@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => ['web', 'auth']], function() {
     $namespace = 'CodyMoorhouse\\Secretary\\';
     $controllers = $namespace . 'Controllers\\';
-    $models = $namespace . 'Models\\';
 
     Route::resource('/comments', $controllers . 'CommentsController', [ 'only' => [
         'destroy', 'store', 'update'
@@ -24,7 +23,7 @@ Route::group(['middleware' => ['web', 'auth']], function() {
         'destroy', 'store', 'update'
     ]]);
 
-    Route::group([ 'prefix' => 'sections' ], function($models . 'Section') use ($controllers) {
+    Route::group([ 'prefix' => 'sections' ], function() use ($controllers) {
         Route::get('/{section}', $controllers . 'SectionsController@get');
         Route::get('/', $controllers . 'SectionsController@index');
     });
