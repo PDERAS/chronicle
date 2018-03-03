@@ -18,13 +18,12 @@
         },
 
         props: {
-            section: {
-                type: String|Number,
-                required: true,
-                validator: val => !isNaN(val)
+            tag: {
+                type: String,
+                required: true
             },
 
-            sectionRefId: {
+            refSlug: {
                 type: String,
                 required: true
             },
@@ -41,7 +40,7 @@
         },
 
         created() {
-            this.$store.dispatch('sections/get', section);
+
         }
     }
 
