@@ -35,8 +35,8 @@
                 required: true
             },
 
-            section: {
-                type: Object,
+            tag: {
+                type: String,
                 required: true
             }
         },
@@ -51,7 +51,7 @@
 
         methods: {
             getNotes() {
-                var url = '/sections/' + this.section.tag + '/notes';
+                var url = '/sections/' + this.tag + '/notes';
                 var config = {
                     params: {
                         slug: this.refSlug
