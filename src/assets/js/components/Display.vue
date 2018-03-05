@@ -1,15 +1,15 @@
 <template>
     <div class="secretary-display">
         <div class="secretary-header">
-            <div class="secretary-header">
-                {{ section.title }}
-            </div>
             <div class="secretary-header-btns">
                 <button>R</button>
                 <button>F</button>
                 <button>B</button>
                 <button>N</button>
                 <button>L</button>
+            </div>
+            <div class="secretary-header-title">
+                {{ section.title }}
             </div>
         </div>
         <div class="secretary-content">
@@ -55,7 +55,7 @@
 
         methods: {
             getNotes() {
-                var url = '/sections/' + this.tag + '/notes';
+                var url = '/sections/' + this.section.tag + '/notes';
                 var config = {
                     params: {
                         slug: this.refSlug
@@ -71,23 +71,21 @@
 
 <style lang="scss">
     .secretary-header {
-        display: inline-block;
-        font-family: Helvetica;
+        border-bottom: solid thin lighten(black, 60);
+    }
+
+    .secretary-header-btns {
+        float: right;
+        padding: 5px;
+    }
+
+    .secretary-header-title {
         font-size: large;
         padding: 5px;
     }
 
-    .secretary-header-btns {
-        display: inline-block;
-        text-align: right;
-    }
-
     .secretary-display {
         font-family: Helvetica, sans-serif;
-    }
-
-    .secretary-note-wrapper {
-        padding: 10px 5px;
     }
 
     .secretary-note-time {
@@ -99,5 +97,13 @@
         color: black;
         font-size: medium;
         font-weight: bold;
+    }
+
+    .secretary-note-wrapper {
+        padding: 10px 5px;
+
+        &:hover {
+            background: lighten(black, 95);
+        }
     }
 </style>
