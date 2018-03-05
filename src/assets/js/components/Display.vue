@@ -2,11 +2,11 @@
     <div class="secretary-display">
         <div class="secretary-header">
             <div class="secretary-header-btns">
-                <button>R</button>
-                <button>F</button>
-                <button>B</button>
-                <button>N</button>
-                <button>L</button>
+                <button class="secretary-header-btn"><i class="fas fa-sync"></i></button>
+                <button class="secretary-header-btn">F</button>
+                <button class="secretary-header-btn">B</button>
+                <button class="secretary-header-btn">N</button>
+                <button class="secretary-header-btn">L</button>
             </div>
             <div class="secretary-header-title">
                 {{ section.title }}
@@ -77,6 +77,16 @@
     .secretary-header-btns {
         float: right;
         padding: 5px;
+    }
+
+    .secretary-header-btns {
+        -webkit-appearance: none;
+        border: none;
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+        }
     }
 
     .secretary-header-title {
