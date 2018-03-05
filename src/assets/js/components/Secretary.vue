@@ -2,10 +2,10 @@
     <div id="secretary" class="secretary">
         <template v-if="section">
             <template v-if="showDisplay">
-                <secretary-display :ref-slug="refSlug" :tag="tag" />
+                <secretary-display :ref-slug="refSlug" :section="section" />
             </template>
             <template v-if="showInput">
-                <secretary-input :ref-slug="refSlug" :tag="tag" />
+                <secretary-input :ref-slug="refSlug" :section="section" />
             </template>
         </template>
     </div>
@@ -43,6 +43,16 @@
                 type: Boolean,
                 default: true
             }
+        },
+
+        data: () => ({
+            section: null
+        }),
+
+        created() {
+            axios.get('/sections/' + this.tag).then(r => {
+                this.section = r.data.section;
+            });
         }
     }
 </script>

@@ -39,8 +39,8 @@
                 required: true
             },
 
-            tag: {
-                type: String,
+            section: {
+                type: Object,
                 required: true
             }
         },
