@@ -71,7 +71,7 @@
 
 <style lang="scss">
     .secretary-header {
-        display: inline-block
+        display: inline-block;
         font-family: Helvetica;
         font-size: large;
         padding: 5px;
