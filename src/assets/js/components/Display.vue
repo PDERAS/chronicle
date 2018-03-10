@@ -2,18 +2,25 @@
     <div class="secretary-display">
         <div class="secretary-header">
             <div class="secretary-header-btns">
-                <button class="secretary-header-btn"><i class="fas fa-sync"></i></button>
                 <button class="secretary-header-btn">
-                    <i class="fas fa-arrow-left" />
+                    <i class="fas fa-sync" v-if="useFontAwesome" />
+                    <div class="x-small" v-else>Refresh</div>
                 </button>
                 <button class="secretary-header-btn">
-                    <i class="fas fa-angle-left" />
+                    <i class="fas fa-arrow-left" v-if="useFontAwesome" />
+                    <div class="x-small" v-else>First</div>
                 </button>
                 <button class="secretary-header-btn">
-                    <i class="fas fa-angle-right" />
+                    <i class="fas fa-angle-left" v-if="useFontAwesome" />
+                    <div class="x-small" v-else>Previous</div>
                 </button>
                 <button class="secretary-header-btn">
-                    <i class="fas fa-arrow-right" />
+                    <i class="fas fa-angle-right" v-if="useFontAwesome" />
+                    <div class="x-small" v-else>Next</div>
+                </button>
+                <button class="secretary-header-btn">
+                    <i class="fas fa-arrow-right" v-if="useFontAwesome" />
+                    <div class="x-small" v-else>Last</div>
                 </button>
             </div>
             <div class="secretary-header-title">
@@ -50,6 +57,11 @@
             section: {
                 type: Object,
                 required: true
+            },
+
+            useFontAwesome: {
+                type: Boolean,
+                default: true
             }
         },
 
@@ -59,6 +71,15 @@
 
         created() {
             this.getNotes();
+        },
+
+        mounted() {
+            if (this.useFontAwesome) {
+                let fontAwesomeScript = document.createElement('script');
+                fontAwesomeScript.setAttribute('src', 'https://use.fontawesome.com/releases/v5.0.8/js/all.js');
+                fontAwesomeScript.setAttribute('defer', '');
+                document.head.appendChild(fontAwesomeScript);
+            }
         },
 
         methods: {
@@ -144,5 +165,9 @@
         &:active {
             color: lighten(black, 50);
         }
+    }
+
+    .x-small {
+        font-size: x-small;
     }
 </style>
