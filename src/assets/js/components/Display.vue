@@ -3,10 +3,18 @@
         <div class="secretary-header">
             <div class="secretary-header-btns">
                 <button class="secretary-header-btn"><i class="fas fa-sync"></i></button>
-                <button class="secretary-header-btn">F</button>
-                <button class="secretary-header-btn">B</button>
-                <button class="secretary-header-btn">N</button>
-                <button class="secretary-header-btn">L</button>
+                <button class="secretary-header-btn">
+                    <i class="fas fa-arrow-left" />
+                </button>
+                <button class="secretary-header-btn">
+                    <i class="fas fa-angle-left" />
+                </button>
+                <button class="secretary-header-btn">
+                    <i class="fas fa-angle-right" />
+                </button>
+                <button class="secretary-header-btn">
+                    <i class="fas fa-arrow-right" />
+                </button>
             </div>
             <div class="secretary-header-title">
                 {{ section.title }}
@@ -70,8 +78,9 @@
 </script>
 
 <style lang="scss">
-    .secretary-header {
-        border-bottom: solid thin lighten(black, 60);
+    .secretary-content {
+        border-bottom: solid thin black;
+        border-top: solid thin black;
     }
 
     .secretary-header-btns {
@@ -110,10 +119,30 @@
     }
 
     .secretary-note-wrapper {
+        border-bottom: solid thin lighten(black, 60);
         padding: 10px 5px;
+
+        &:last-child {
+            border-bottom: none;
+        }
 
         &:hover {
             background: lighten(black, 95);
+        }
+    }
+
+    .secretary-header-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 15px;
+
+        &:focus {
+            outline: none;
+        }
+
+        &:active {
+            color: lighten(black, 50);
         }
     }
 </style>
