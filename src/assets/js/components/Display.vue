@@ -66,7 +66,7 @@
 
             showTitle: {
                 type: Boolean,
-                default: false
+                default: true
             },
 
             useFontAwesome: {
