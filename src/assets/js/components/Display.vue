@@ -2,23 +2,23 @@
     <div class="secretary-display">
         <div class="secretary-header">
             <div class="secretary-header-btns">
-                <button class="secretary-header-btn" @click="getNotes(currentPage)"  >
+                <button class="secretary-btn header" @click="getNotes(currentPage)"  >
                     <i class="fas fa-sync" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Refresh</div>
                 </button>
-                <button class="secretary-header-btn" :disabled="currentPage == firstPage" @click="getNotes(firstPage)">
+                <button class="secretary-btn header" :disabled="currentPage == firstPage" @click="getNotes(firstPage)">
                     <i class="fas fa-arrow-left" v-if="useFontAwesome" />
                     <div class="x-small" v-else>First</div>
                 </button>
-                <button class="secretary-header-btn" :disabled="!previousPage" @click="getNotes(previousPage)">
+                <button class="secretary-btn header" :disabled="!previousPage" @click="getNotes(previousPage)">
                     <i class="fas fa-angle-left" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Previous</div>
                 </button>
-                <button class="secretary-header-btn" :disabled="!nextPage" @click="getNotes(nextPage)">
+                <button class="secretary-btn header" :disabled="!nextPage" @click="getNotes(nextPage)">
                     <i class="fas fa-angle-right" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Next</div>
                 </button>
-                <button class="secretary-header-btn" :disabled="currentPage == lastPage"  @click="getNotes(lastPage)">
+                <button class="secretary-btn header" :disabled="currentPage == lastPage" @click="getNotes(lastPage)">
                     <i class="fas fa-arrow-right" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Last</div>
                 </button>
@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="secretary-content">
-            <div class="secretary-note-wrapper" v-for="note in notes">
+            <div class="secretary-note-wrapper" v-for="note in notes" @mouseover="showActionBar(note.id)" @mouseleave="hideActionBar">
                 <div class="secretary-note-header">
                     <span class="secretary-note-user">{{ note.user.name }}</span>
                     <span class="secretary-note-time">{{ formatDate(createDate(note.created_at)) }}</span>
@@ -41,8 +41,24 @@
                 <div class="secretary-note-content">
                     <div>{{ note.description }}</div>
                 </div>
-                <div class="secretary-note-btns">
 
+                <div class="secretary-action-bar" v-if="actionBarId == note.id">
+                    <button class="secretary-btn action">
+                        <i class="fas fa-info" v-if="useFontAwesome" />
+                        <div class="x-small" v-else>Info</div>
+                    </button>
+                    <button class="secretary-btn action">
+                        <i class="fas fa-comments" v-if="useFontAwesome" />
+                        <div class="x-small" v-else>Comments</div>
+                    </button>
+                    <button class="secretary-btn action">
+                        <i class="fas fa-edit" v-if="useFontAwesome" />
+                        <div class="x-small" v-else>Edit</div>
+                    </button>
+                    <button class="secretary-btn action">
+                        <i class="fas fa-trash" v-if="useFontAwesome" />
+                        <div class="x-small" v-else>Delete</div>
+                    </button>
                 </div>
             </div>
         </div>
@@ -76,6 +92,8 @@
         },
 
         data: () => ({
+            actionBarId: null,
+
             currentPage: null,
             firstPage: null,
             lastPage: null,
@@ -140,17 +158,6 @@
                 return returnVal;
             },
 
-            isFontAwesomeLoaded() {
-                var scripts = document.getElementsByTagName('script');
-
-                for (var i = 0; i < scripts.length; i++) {
-                    if (scripts[i].src == this.fontAwesomeUrl) {
-                        return true;
-                    }
-                }
-                return false;
-            },
-
             getNotes(page) {
                 var url = '/sections/' + this.section.tag + '/notes';
                 var config = {
@@ -175,11 +182,30 @@
                 });
             },
 
+            hideActionBar(id) {
+                this.actionBarId = null;
+            },
+
+            isFontAwesomeLoaded() {
+                var scripts = document.getElementsByTagName('script');
+
+                for (var i = 0; i < scripts.length; i++) {
+                    if (scripts[i].src == this.fontAwesomeUrl) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+
             loadFontAwesome() {
                 let fontAwesomeScript = document.createElement('script');
                 fontAwesomeScript.setAttribute('src', this.fontAwesomeUrl);
                 fontAwesomeScript.setAttribute('defer', '');
                 document.head.appendChild(fontAwesomeScript);
+            },
+
+            showActionBar(id) {
+                this.actionBarId = id;
             }
         }
     }
@@ -197,8 +223,6 @@
     }
 
     .secretary-header-btns {
-        -webkit-appearance: none;
-        border: none;
         cursor: pointer;
 
         &:focus {
@@ -235,6 +259,7 @@
     .secretary-note-wrapper {
         border-bottom: solid thin lighten(black, 60);
         padding: 10px 5px;
+        position: relative;
 
         &:last-child {
             border-bottom: none;
@@ -245,18 +270,53 @@
         }
     }
 
-    .secretary-header-btn {
+    .secretary-btn {
         background: transparent;
         border: none;
         cursor: pointer;
-        font-size: 15px;
+
+        &.action {
+            color: lighten(black, 60);
+
+            &:active, &:hover {
+                color: lighten(black, 80);
+            }
+        }
+
+        &.header {
+            font-size: 15px;
+        }
+
+        &:disabled {
+            cursor: not-allowed;
+        }
 
         &:focus {
             outline: none;
         }
 
-        &:active {
+        &:active, &:hover {
             color: lighten(black, 50);
+        }
+    }
+
+    .secretary-action-bar {
+        border: solid thin lighten(black, 60);
+        border-radius: 5px;
+        position: absolute;
+        top: 3px;
+        right: 5px;
+
+        .secretary-btn {
+            border-right: solid thin lighten(black, 60);
+            min-width: 25px;
+            padding: 0 5px;
+            text-align: center;
+            width: auto;
+
+            &:last-child {
+                border-right: none;
+            }
         }
     }
 
