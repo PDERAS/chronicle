@@ -2,23 +2,23 @@
     <div class="secretary-display">
         <div class="secretary-header">
             <div class="secretary-header-btns">
-                <button class="secretary-header-btn">
+                <button class="secretary-header-btn" @click="getNotes(currentPage)"  >
                     <i class="fas fa-sync" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Refresh</div>
                 </button>
-                <button class="secretary-header-btn">
+                <button class="secretary-header-btn" :disabled="currentPage == firstPage" @click="getNotes(firstPage)">
                     <i class="fas fa-arrow-left" v-if="useFontAwesome" />
                     <div class="x-small" v-else>First</div>
                 </button>
-                <button class="secretary-header-btn">
+                <button class="secretary-header-btn" :disabled="!previousPage" @click="getNotes(previousPage)">
                     <i class="fas fa-angle-left" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Previous</div>
                 </button>
-                <button class="secretary-header-btn">
+                <button class="secretary-header-btn" :disabled="!nextPage" @click="getNotes(nextPage)">
                     <i class="fas fa-angle-right" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Next</div>
                 </button>
-                <button class="secretary-header-btn">
+                <button class="secretary-header-btn" :disabled="currentPage == lastPage"  @click="getNotes(lastPage)">
                     <i class="fas fa-arrow-right" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Last</div>
                 </button>
@@ -66,12 +66,18 @@
         },
 
         data: () => ({
+            currentPage: null,
+            firstPage: null,
             fontAwesomeUrl: 'https://use.fontawesome.com/releases/v5.0.8/js/all.js',
+            lastPage: null,
+            nextPage: null,
+            previousPage: null,
+            totalPages: null,
             notes: []
         }),
 
         created() {
-            this.getNotes();
+            this.getNotes(1);
         },
 
         mounted() {
@@ -92,15 +98,23 @@
                 return false;
             },
 
-            getNotes() {
+            getNotes(page) {
                 var url = '/sections/' + this.section.tag + '/notes';
                 var config = {
                     params: {
+                        page: page,
                         slug: this.refSlug
                     }
                 };
                 axios.get(url, config).then(r => {
-                    this.notes = r.data.notes;
+                    this.firstPage = 1;
+                    this.lastPage = r.data.notes.last_page;
+                    this.currentPage = r.data.notes.current_page;
+
+                    this.nextPage = this.currentPage < this.lastPage ? this.currentPage + 1: null;
+                    this.previousPage = this.currentPage > this.firstPage ? this.currentPage - 1 : null;
+
+                    this.notes = r.data.notes.data;
                 });
             },
 

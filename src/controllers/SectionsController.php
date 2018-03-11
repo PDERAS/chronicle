@@ -90,7 +90,9 @@ class SectionsController extends Controller
     {
         try {
             return DB::transaction(function() use ($request, $section) {
-                $notes = $section->notes->where('section_ref_slug', $request->slug);
+                $notes = $section->notes()
+                    ->where('section_ref_slug', $request->slug)
+                    ->paginate(config('secretary.paginate_amount'););
 
                 foreach ($notes as $note) {
                     $note->user;
