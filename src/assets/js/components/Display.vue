@@ -66,6 +66,7 @@
         },
 
         data: () => ({
+            fontAwesomeUrl: 'https://use.fontawesome.com/releases/v5.0.8/js/all.js',
             notes: []
         }),
 
@@ -74,15 +75,23 @@
         },
 
         mounted() {
-            if (this.useFontAwesome) {
-                let fontAwesomeScript = document.createElement('script');
-                fontAwesomeScript.setAttribute('src', 'https://use.fontawesome.com/releases/v5.0.8/js/all.js');
-                fontAwesomeScript.setAttribute('defer', '');
-                document.head.appendChild(fontAwesomeScript);
+            if (this.useFontAwesome && !this.isFontAwesomeLoaded()) {
+                this.loadFontAwesome();
             }
         },
 
         methods: {
+            isFontAwesomeLoaded() {
+                var scripts = document.getElementsByTagName('script');
+
+                for (var i = 0; i < scripts.length; i++) {
+                    if (scripts[i].src == this.fontAwesomeUrl) {
+                        return true;
+                    }
+                }
+                return false;
+            },
+
             getNotes() {
                 var url = '/sections/' + this.section.tag + '/notes';
                 var config = {
@@ -93,6 +102,13 @@
                 axios.get(url, config).then(r => {
                     this.notes = r.data.notes;
                 });
+            },
+
+            loadFontAwesome() {
+                let fontAwesomeScript = document.createElement('script');
+                fontAwesomeScript.setAttribute('src', this.fontAwesomeUrl);
+                fontAwesomeScript.setAttribute('defer', '');
+                document.head.appendChild(fontAwesomeScript);
             }
         }
     }
