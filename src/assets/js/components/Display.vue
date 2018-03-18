@@ -33,7 +33,7 @@
             </div>
         </div>
         <div class="secretary-content">
-            <div class="secretary-note-wrapper" v-for="note in notes" @mouseover="showActionBar(note.id)" @mouseleave="hideActionBar">
+            <div class="secretary-note-wrapper" v-for="note in notes" @mouseover="showActionBar(note)" @mouseleave="hideActionBar">
                 <div class="secretary-note-header">
                     <span class="secretary-note-user">{{ note.user.name }}</span>
                     <span class="secretary-note-time">{{ formatDate(createDate(note.created_at)) }}</span>
@@ -55,7 +55,7 @@
                         <i class="fas fa-edit" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Edit</div>
                     </button>
-                    <button class="secretary-btn action">
+                    <button class="secretary-btn action" @click="destroy(note)">
                         <i class="fas fa-trash" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Delete</div>
                     </button>
@@ -131,6 +131,14 @@
                 return new Date(Date.UTC(d[0],(d[1]),d[2],t[0],t[1],t[2]));
             },
 
+            destroy(note) {
+                var url = '/notes/' + note.id;
+
+                axios.delete(url).then(r => {
+                    this.getNotes(this.currentPage);
+                });
+            },
+
             formatDate(date) {
                 var months = [
                     "January",
@@ -204,8 +212,8 @@
                 document.head.appendChild(fontAwesomeScript);
             },
 
-            showActionBar(id) {
-                this.actionBarId = id;
+            showActionBar(note) {
+                this.actionBarId = note.id;
             }
         }
     }
