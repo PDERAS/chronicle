@@ -53,9 +53,8 @@
     /* REF: https://www.w3schools.com/howto/howto_css_modals.asp */
     /* Modal Mask */
     .secretary-modal-wrapper {
-        background-color: #fefefe;
-        margin: 10% auto;
-        border: 1px solid #888;
+        background-color: transparent;
+        margin: 5% auto;
         width: 75%;
         -webkit-animation-name: animatetop;
         -webkit-animation-duration: 0.4s;
@@ -82,6 +81,10 @@
         background-color: #5cb85c;
         color: white;
         font-size: 20px;
+
+        -webkit-border-radius: 5px 5px 0px 0px;
+        -moz-border-radius: 5px 5px 0px 0px;
+        border-radius: 5px 5px 0px 0px;
     }
 
     /* Modal Body */
@@ -94,6 +97,10 @@
         padding: 5px 15px;
         background-color: #5cb85c;
         color: white;
+
+        -webkit-border-radius: 0px 0px 5px 5px;
+        -moz-border-radius: 0px 0px 5px 5px;
+        border-radius: 0px 0px 5px 5px;
     }
 
     /* Modal Content */
