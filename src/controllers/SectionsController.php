@@ -92,7 +92,7 @@ class SectionsController extends Controller
             return DB::transaction(function() use ($request, $section) {
                 $notes = $section->notes()
                     ->where('section_ref_slug', $request->slug)
-                    ->paginate(config('chronicle.paginate_amount');
+                    ->paginate(config('chronicle.paginate_amount'));
 
                 foreach ($notes as $note) {
                     $note->user;
