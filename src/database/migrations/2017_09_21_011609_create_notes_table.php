@@ -29,7 +29,7 @@ class CreateNotesTable extends Migration
             $table->unsignedInteger('section_id');
             $table->unsignedInteger('user_id');
             $table->string('section_ref_slug');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
 

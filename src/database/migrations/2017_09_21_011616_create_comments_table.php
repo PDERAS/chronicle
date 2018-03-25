@@ -23,7 +23,7 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('note_id');
             $table->unsignedInteger('user_id');
-            $table->string('description');
+            $table->text('description');
             $table->timestamps();
             $table->softDeletes();
 
