@@ -129,11 +129,11 @@
     /* Add Animation */
     @keyframes animatetop {
         0% {
-            margin-top: -10px;
+            margin-top: -5%;
             opacity: 0
         }
         100% {
-            margin-top: 10%;
+            margin-top: 5%;
             opacity: 1
         }
     }
