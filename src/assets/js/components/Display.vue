@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="secretary-action-bar" v-if="actionBarId == note.id">
-                    <button class="secretary-btn action">
+                    <button class="secretary-btn action" @click="openModal('view')">
                         <i class="fas fa-info" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Info</div>
                     </button>
@@ -62,12 +62,20 @@
                 </div>
             </div>
         </div>
+
+        <secretary-modal :action="modalAction" :note="{}" :ref-slug="refSlug" v-if="showModal" @close-modal="closeModal" />
     </div>
 </template>
 
 <script>
+    import SecretaryModal from './Modal';
+
     export default {
         name: 'secretary-display',
+
+        components: {
+            SecretaryModal
+        },
 
         props: {
             refSlug: {
@@ -105,7 +113,10 @@
             totalEntries: 0,
 
             fontAwesomeUrl: 'https://use.fontawesome.com/releases/v5.0.8/js/all.js',
-            notes: []
+            notes: [],
+
+            modalAction: 'view',
+            showModal: false,
         }),
 
         created() {
@@ -129,6 +140,10 @@
                 var t = a[1].split(":");
 
                 return new Date(Date.UTC(d[0],(d[1]),d[2],t[0],t[1],t[2]));
+            },
+
+            closeModal() {
+                this.showModal = false;
             },
 
             destroy(note) {
@@ -210,6 +225,11 @@
                 fontAwesomeScript.setAttribute('src', this.fontAwesomeUrl);
                 fontAwesomeScript.setAttribute('defer', '');
                 document.head.appendChild(fontAwesomeScript);
+            },
+
+            openModal(action) {
+                this.modalAction = action;
+                this.showModal = true;
             },
 
             showActionBar(note) {
