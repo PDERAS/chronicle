@@ -57,6 +57,10 @@
         margin: 10% auto;
         border: 1px solid #888;
         width: 75%;
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
     }
 
     /* Modal Mask */
@@ -98,8 +102,6 @@
         background-color: #fefefe;
         margin: auto;
         padding: 15px;
-        animation-name: animatetop;
-        animation-duration: 0.4s;
     }
 
     /* The Close Button */
@@ -115,5 +117,17 @@
         color: black;
         text-decoration: none;
         cursor: pointer;
+    }
+
+    /* Add Animation */
+    @keyframes animatetop {
+        0% {
+            margin-top: -10px;
+            opacity: 0
+        }
+        100% {
+            margin-top: 10%;
+            opacity: 1
+        }
     }
 </style>
