@@ -92,6 +92,7 @@ class SectionsController extends Controller
             return DB::transaction(function() use ($request, $section) {
                 $notes = $section->notes()
                     ->where('section_ref_slug', $request->slug)
+                    ->orderBy('created_at', 'desc')
                     ->paginate(config('chronicle.paginate_amount'));
 
                 foreach ($notes as $note) {
