@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Requests\Comments;
+namespace CodyMoorhouse\Chronicle\Requests\Comments;
 
 use Illuminate\Foundation\Http\FormRequest;
 

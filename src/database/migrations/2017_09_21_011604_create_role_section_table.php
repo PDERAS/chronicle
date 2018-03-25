@@ -13,12 +13,12 @@ class CreateRoleSectionTable extends Migration
      */
     public function up()
     {
-        $role_section_table = config('secretary.role_section_table');
+        $role_section_table = config('chronicle.role_section_table');
 
         Schema::create($role_section_table, function(Blueprint $table) {
-            $roles_table    = config('secretary.roles_table');
-            $roles_table_id = config('secretary.roles_table_id');
-            $sections_table = config('secretary.sections_table');
+            $roles_table    = config('chronicle.roles_table');
+            $roles_table_id = config('chronicle.roles_table_id');
+            $sections_table = config('chronicle.sections_table');
 
             $table->increments('id');
             $table->unsignedInteger('section_id');
@@ -46,7 +46,7 @@ class CreateRoleSectionTable extends Migration
      */
     public function down()
     {
-        $role_section_table = config('secretary.role_section_table');
+        $role_section_table = config('chronicle.role_section_table');
 
         Schema::dropIfExists($role_section_table);
     }

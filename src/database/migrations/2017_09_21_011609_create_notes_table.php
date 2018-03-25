@@ -13,17 +13,17 @@ class CreateNotesTable extends Migration
      */
     public function up()
     {
-        $notes_table    = config('secretary.notes_table');
+        $notes_table    = config('chronicle.notes_table');
 
         Schema::create($notes_table, function(Blueprint $table)
         {
-            $companies_table    = config('secretary.companies_table');
-            $companies_table_id = config('secretary.companies_table_id');
-            $users_table        = config('secretary.users_table');
-            $users_table_id     = config('secretary.users_table_id');
+            $companies_table    = config('chronicle.companies_table');
+            $companies_table_id = config('chronicle.companies_table_id');
+            $users_table        = config('chronicle.users_table');
+            $users_table_id     = config('chronicle.users_table_id');
 
-            $roles_table_id     = config('secretary.roles_table_id');
-            $sections_table     = config('secretary.sections_table');
+            $roles_table_id     = config('chronicle.roles_table_id');
+            $sections_table     = config('chronicle.sections_table');
 
             $table->increments('id');
             $table->unsignedInteger('section_id');
@@ -59,7 +59,7 @@ class CreateNotesTable extends Migration
      */
     public function down()
     {
-        $notes_table    = config('secretary.notes_table');
+        $notes_table    = config('chronicle.notes_table');
 
         Schema::dropIfExists($notes_table);
     }

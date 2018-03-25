@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Models;
+namespace CodyMoorhouse\Chronicle\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -62,7 +62,7 @@ class Section extends Model
     public function newInstance($attributes = [], $exists = false)
     {
         $model = parent::newInstance($attributes, $exists);
-        $model->setTable(config('secretary.sections_table'));
+        $model->setTable(config('chronicle.sections_table'));
         return $model;
     }
 
@@ -71,6 +71,6 @@ class Section extends Model
      */
     public function notes()
     {
-        return $this->hasMany('CodyMoorhouse\Secretary\Models\Note');
+        return $this->hasMany('CodyMoorhouse\Chronicle\Models\Note');
     }
 }

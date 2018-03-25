@@ -1,6 +1,6 @@
 <?php
 
-namespace Pderas\Secretary\Requests\Comments;
+namespace Pderas\Chronicle\Requests\Comments;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
-        $notes_table = config('secretary.notes_table');
+        $notes_table = config('chronicle.notes_table');
 
         return [
             'description'   =>  'required|string',

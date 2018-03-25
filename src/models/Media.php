@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Models;
+namespace CodyMoorhouse\Chronicle\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -54,7 +54,7 @@ class Media extends Model
     public function newInstance($attributes = [], $exists = false)
     {
         $model = parent::newInstance($attributes, $exists);
-        $model->setTable(config('secretary.media_table'));
+        $model->setTable(config('chronicle.media_table'));
         return $model;
     }
 }

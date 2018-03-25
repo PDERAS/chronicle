@@ -1,11 +1,11 @@
 <template>
-    <div class="secretary-input">
+    <div class="chronicle-input">
     </div>
 </template>
 
 <script>
     export default {
-        name: 'secretary-input',
+        name: 'chronicle-input',
 
         props: {
             refSlug: {

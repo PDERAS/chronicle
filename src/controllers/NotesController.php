@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Controllers;
+namespace CodyMoorhouse\Chronicle\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -8,20 +8,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 /* Models */
-use CodyMoorhouse\Secretary\Models\Note;
+use CodyMoorhouse\Chronicle\Models\Note;
 
 /* Requests */
-use CodyMoorhouse\Secretary\Requests\Notes\DestroyRequest;
-use CodyMoorhouse\Secretary\Requests\Notes\StoreRequest;
-use CodyMoorhouse\Secretary\Requests\Notes\UpdateRequest;
+use CodyMoorhouse\Chronicle\Requests\Notes\DestroyRequest;
+use CodyMoorhouse\Chronicle\Requests\Notes\StoreRequest;
+use CodyMoorhouse\Chronicle\Requests\Notes\UpdateRequest;
 
 class NotesController extends Controller
 {
     /**
      * Destroy a note in the system.
      *
-     * @param CodyMoorhouse\Secretary\Models\Note $note
-     * @param CodyMoorhouse\Secretary\Requests\Media\DestroyRequest $request
+     * @param CodyMoorhouse\Chronicle\Models\Note $note
+     * @param CodyMoorhouse\Chronicle\Requests\Media\DestroyRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -45,7 +45,7 @@ class NotesController extends Controller
                 return Response::json([
                     'message'   =>  'Note deleted successfully',
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'notes'  =>  [$e]
@@ -56,7 +56,7 @@ class NotesController extends Controller
     /**
      * Store a new note into a section.
      *
-     * @param CodyMoorhouse\Secretary\Requests\Notes\StoreRequest $request
+     * @param CodyMoorhouse\Chronicle\Requests\Notes\StoreRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -74,7 +74,7 @@ class NotesController extends Controller
                 return Response::json([
                     'message'   =>  'Note created successfully',
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'notes'  =>  [$e]
@@ -85,8 +85,8 @@ class NotesController extends Controller
     /**
      * Update a note in the system.
      *
-     * @param CodyMoorhouse\Secretary\Models\Note $note
-     * @param CodyMoorhouse\Secretary\Requests\Notes\UpdateRequest $request
+     * @param CodyMoorhouse\Chronicle\Models\Note $note
+     * @param CodyMoorhouse\Chronicle\Requests\Notes\UpdateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -101,7 +101,7 @@ class NotesController extends Controller
                 return Response::json([
                     'message'   =>  'Note updated successfully',
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'notes'  =>  [$e]

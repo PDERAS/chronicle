@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Controllers;
+namespace CodyMoorhouse\Chronicle\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -8,20 +8,20 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 /* Models */
-use CodyMoorhouse\Secretary\Models\Comment;
+use CodyMoorhouse\Chronicle\Models\Comment;
 
 /* Requests */
-use CodyMoorhouse\Secretary\Requests\Comments\DestroyRequest;
-use CodyMoorhouse\Secretary\Requests\Comments\StoreRequest;
-use CodyMoorhouse\Secretary\Requests\Comments\UpdateRequest;
+use CodyMoorhouse\Chronicle\Requests\Comments\DestroyRequest;
+use CodyMoorhouse\Chronicle\Requests\Comments\StoreRequest;
+use CodyMoorhouse\Chronicle\Requests\Comments\UpdateRequest;
 
 class CommentsController extends Controller
 {
     /**
      * Destroy a comment in the system.
      *
-     * @param CodyMoorhouse\Secretary\Models\Comment $comment
-     * @param CodyMoorhouse\Secretary\Requests\Comments\DestroyRequest $request
+     * @param CodyMoorhouse\Chronicle\Models\Comment $comment
+     * @param CodyMoorhouse\Chronicle\Requests\Comments\DestroyRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -34,7 +34,7 @@ class CommentsController extends Controller
                 return Response::json([
                     'message'   =>  'Comment deleted successfully',
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'comments'  =>  [$e]
@@ -45,7 +45,7 @@ class CommentsController extends Controller
     /**
      * Store a new comment into a note.
      *
-     * @param CodyMoorhouse\Secretary\Requests\Comments\StoreRequest $request
+     * @param CodyMoorhouse\Chronicle\Requests\Comments\StoreRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -62,7 +62,7 @@ class CommentsController extends Controller
                 return Response::json([
                     'message'   =>  'Comment created successfully',
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'comments'  =>  [$e]
@@ -73,8 +73,8 @@ class CommentsController extends Controller
     /**
      * Update a comment in the system.
      *
-     * @param CodyMoorhouse\Secretary\Models\Comment $comment
-     * @param CodyMoorhouse\Secretary\Requests\Comments\UpdateRequest $request
+     * @param CodyMoorhouse\Chronicle\Models\Comment $comment
+     * @param CodyMoorhouse\Chronicle\Requests\Comments\UpdateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -89,7 +89,7 @@ class CommentsController extends Controller
                 return Response::json([
                     'message'   =>  'Comment updated successfully',
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'comments'  =>  [$e]

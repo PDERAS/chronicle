@@ -1,11 +1,11 @@
 <?php
 
-namespace CodyMoorhouse\Secretary;
+namespace CodyMoorhouse\Chronicle;
 
 use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['web', 'auth']], function() {
-    $namespace = 'CodyMoorhouse\\Secretary\\';
+    $namespace = 'CodyMoorhouse\\Chronicle\\';
     $controllers = $namespace . 'Controllers\\';
 
     Route::resource('/comments', $controllers . 'CommentsController', [ 'only' => [

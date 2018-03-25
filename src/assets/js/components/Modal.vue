@@ -1,17 +1,17 @@
 <template>
-    <div class="secretary-modal">
-        <div class="secretary-modal-mask" @click.self="emitCloseModal">
-                <div class="secretary-modal-wrapper">
-                    <div class="secretary-modal-header">
+    <div class="chronicle-modal">
+        <div class="chronicle-modal-mask" @click.self="emitCloseModal">
+                <div class="chronicle-modal-wrapper">
+                    <div class="chronicle-modal-header">
                         <template v-if="action =='view'">Note Information</template>
-                        <span class="secretary-modal-close" @click="emitCloseModal">&times;</span>
+                        <span class="chronicle-modal-close" @click="emitCloseModal">&times;</span>
                     </div>
 
-                    <div class="secretary-modal-content">
+                    <div class="chronicle-modal-content">
                         <template v-if="action =='view'">{{ note.description }}</template>
                     </div>
 
-                    <div class="secretary-modal-footer">
+                    <div class="chronicle-modal-footer">
                         Footer
                     </div>
                 </div>
@@ -22,7 +22,7 @@
 
 <script>
     export default {
-        name: 'secretary-modal',
+        name: 'chronicle-modal',
 
         props: {
             action: {
@@ -52,7 +52,7 @@
 <style lang="scss">
     /* REF: https://www.w3schools.com/howto/howto_css_modals.asp */
     /* Modal Mask */
-    .secretary-modal-wrapper {
+    .chronicle-modal-wrapper {
         background-color: transparent;
         margin: 5% auto;
         width: 75%;
@@ -63,7 +63,7 @@
     }
 
     /* Modal Mask */
-    .secretary-modal-mask {
+    .chronicle-modal-mask {
         position: fixed;
         z-index: 1;
         left: 0;
@@ -76,7 +76,7 @@
     }
 
     /* Modal Header */
-    .secretary-modal-header {
+    .chronicle-modal-header {
         padding: 5px 15px;
         background-color: #3f3f3f;
         color: white;
@@ -88,12 +88,12 @@
     }
 
     /* Modal Body */
-    .secretary-modal-body {
+    .chronicle-modal-body {
         padding: 2px 16px;
     }
 
     /* Modal Footer */
-    .secretary-modal-footer {
+    .chronicle-modal-footer {
         padding: 5px 15px;
         background-color: #3f3f3f;
         color: white;
@@ -104,7 +104,7 @@
     }
 
     /* Modal Content */
-    .secretary-modal-content {
+    .chronicle-modal-content {
         position: relative;
         background-color: #fefefe;
         margin: auto;
@@ -112,15 +112,15 @@
     }
 
     /* The Close Button */
-    .secretary-modal-close {
+    .chronicle-modal-close {
         color: #fefefe;
         float: right;
         font-size: 20px;
         font-weight: bold;
     }
 
-    .secretary-modal-close:hover,
-    .secretary-modal-close:focus {
+    .chronicle-modal-close:hover,
+    .chronicle-modal-close:focus {
         color: black;
         text-decoration: none;
         cursor: pointer;

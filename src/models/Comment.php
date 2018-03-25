@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Models;
+namespace CodyMoorhouse\Chronicle\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -52,7 +52,7 @@ class Comment extends Model
     public function newInstance($attributes = [], $exists = false)
     {
         $model = parent::newInstance($attributes, $exists);
-        $model->setTable(config('secretary.comments_table'));
+        $model->setTable(config('chronicle.comments_table'));
         return $model;
     }
 }

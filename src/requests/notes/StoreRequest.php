@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Requests\Notes;
+namespace CodyMoorhouse\Chronicle\Requests\Notes;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
-        $sections_table = config('secretary.sections_table');
+        $sections_table = config('chronicle.sections_table');
 
         return [
             'description'       =>  'required|string',

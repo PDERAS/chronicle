@@ -13,12 +13,12 @@ class CreateCommentsTable extends Migration
      */
     public function up()
     {
-        $comments_table = config('secretary.comments_table');
+        $comments_table = config('chronicle.comments_table');
 
         Schema::create($comments_table, function(Blueprint $table) {
-            $notes_table    = config('secretary.notes_table');
-            $users_table    = config('secretary.users_table');
-            $users_table_id = config('secretary.users_table_id');
+            $notes_table    = config('chronicle.notes_table');
+            $users_table    = config('chronicle.users_table');
+            $users_table_id = config('chronicle.users_table_id');
 
             $table->increments('id');
             $table->unsignedInteger('note_id');
@@ -46,7 +46,7 @@ class CreateCommentsTable extends Migration
      */
     public function down()
     {
-        $comments_table = config('secretary.comments_table');
+        $comments_table = config('chronicle.comments_table');
 
         Schema::dropIfExists($comments_table);
     }

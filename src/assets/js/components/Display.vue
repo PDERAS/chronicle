@@ -1,29 +1,29 @@
 <template>
-    <div class="secretary-display">
-        <div class="secretary-header">
-            <div class="secretary-header-btns">
-                <button class="secretary-btn header" @click="getNotes(currentPage)"  >
+    <div class="chronicle-display">
+        <div class="chronicle-header">
+            <div class="chronicle-header-btns">
+                <button class="chronicle-btn header" @click="getNotes(currentPage)"  >
                     <i class="fas fa-sync" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Refresh</div>
                 </button>
-                <button class="secretary-btn header" :disabled="currentPage == firstPage" @click="getNotes(firstPage)">
+                <button class="chronicle-btn header" :disabled="currentPage == firstPage" @click="getNotes(firstPage)">
                     <i class="fas fa-arrow-left" v-if="useFontAwesome" />
                     <div class="x-small" v-else>First</div>
                 </button>
-                <button class="secretary-btn header" :disabled="!previousPage" @click="getNotes(previousPage)">
+                <button class="chronicle-btn header" :disabled="!previousPage" @click="getNotes(previousPage)">
                     <i class="fas fa-angle-left" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Previous</div>
                 </button>
-                <button class="secretary-btn header" :disabled="!nextPage" @click="getNotes(nextPage)">
+                <button class="chronicle-btn header" :disabled="!nextPage" @click="getNotes(nextPage)">
                     <i class="fas fa-angle-right" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Next</div>
                 </button>
-                <button class="secretary-btn header" :disabled="currentPage == lastPage" @click="getNotes(lastPage)">
+                <button class="chronicle-btn header" :disabled="currentPage == lastPage" @click="getNotes(lastPage)">
                     <i class="fas fa-arrow-right" v-if="useFontAwesome" />
                     <div class="x-small" v-else>Last</div>
                 </button>
             </div>
-            <div class="secretary-header-title" :class="{ 'alt-title': !showTitle }">
+            <div class="chronicle-header-title" :class="{ 'alt-title': !showTitle }">
                 <template v-if="showTitle">
                     {{ section.title }}
                 </template>
@@ -32,30 +32,30 @@
                 </template>
             </div>
         </div>
-        <div class="secretary-content">
-            <div class="secretary-note-wrapper" v-for="note in notes" @mouseover="showActionBar(note)" @mouseleave="hideActionBar">
-                <div class="secretary-note-header">
-                    <span class="secretary-note-user">{{ note.user.name }}</span>
-                    <span class="secretary-note-time">{{ formatDate(createDate(note.created_at)) }}</span>
+        <div class="chronicle-content">
+            <div class="chronicle-note-wrapper" v-for="note in notes" @mouseover="showActionBar(note)" @mouseleave="hideActionBar">
+                <div class="chronicle-note-header">
+                    <span class="chronicle-note-user">{{ note.user.name }}</span>
+                    <span class="chronicle-note-time">{{ formatDate(createDate(note.created_at)) }}</span>
                 </div>
-                <div class="secretary-note-content">
-                    <div class="secretary-note-description">{{ note.description }}</div>
+                <div class="chronicle-note-content">
+                    <div class="chronicle-note-description">{{ note.description }}</div>
                 </div>
 
-                <div class="secretary-action-bar" v-if="actionBarId == note.id">
-                    <button class="secretary-btn action" @click="openModal('view', note)">
+                <div class="chronicle-action-bar" v-if="actionBarId == note.id">
+                    <button class="chronicle-btn action" @click="openModal('view', note)">
                         <i class="fas fa-info" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Info</div>
                     </button>
-                    <button class="secretary-btn action">
+                    <button class="chronicle-btn action">
                         <i class="fas fa-comments" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Comments</div>
                     </button>
-                    <button class="secretary-btn action">
+                    <button class="chronicle-btn action">
                         <i class="fas fa-edit" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Edit</div>
                     </button>
-                    <button class="secretary-btn action" @click="destroy(note)">
+                    <button class="chronicle-btn action" @click="destroy(note)">
                         <i class="fas fa-trash" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Delete</div>
                     </button>
@@ -63,18 +63,18 @@
             </div>
         </div>
 
-        <secretary-modal :action="modalAction" :note="modalNote" :ref-slug="refSlug" v-if="showModal" @close-modal="closeModal" />
+        <chronicle-modal :action="modalAction" :note="modalNote" :ref-slug="refSlug" v-if="showModal" @close-modal="closeModal" />
     </div>
 </template>
 
 <script>
-    import SecretaryModal from './Modal';
+    import ChronicleModal from './Modal';
 
     export default {
-        name: 'secretary-display',
+        name: 'chronicle-display',
 
         components: {
-            SecretaryModal
+            ChronicleModal
         },
 
         props: {
@@ -243,17 +243,17 @@
 </script>
 
 <style lang="scss">
-    .secretary-content {
+    .chronicle-content {
         border-bottom: solid thin black;
         border-top: solid thin black;
     }
 
-    .secretary-header-btns {
+    .chronicle-header-btns {
         float: right;
         padding: 5px;
     }
 
-    .secretary-header-btns {
+    .chronicle-header-btns {
         cursor: pointer;
 
         &:focus {
@@ -261,7 +261,7 @@
         }
     }
 
-    .secretary-header-title {
+    .chronicle-header-title {
         font-size: large;
         padding: 5px;
 
@@ -272,28 +272,28 @@
         }
     }
 
-    .secretary-display {
+    .chronicle-display {
         font-family: Helvetica, sans-serif;
     }
 
-    .secretary-note-description {
+    .chronicle-note-description {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
     }
 
-    .secretary-note-time {
+    .chronicle-note-time {
         color: lighten(black, 60);
         font-size: small;
     }
 
-    .secretary-note-user {
+    .chronicle-note-user {
         color: black;
         font-size: medium;
         font-weight: bold;
     }
 
-    .secretary-note-wrapper {
+    .chronicle-note-wrapper {
         border-bottom: solid thin lighten(black, 60);
         padding: 10px 5px;
         position: relative;
@@ -307,7 +307,7 @@
         }
     }
 
-    .secretary-btn {
+    .chronicle-btn {
         background: transparent;
         border: none;
         cursor: pointer;
@@ -337,14 +337,14 @@
         }
     }
 
-    .secretary-action-bar {
+    .chronicle-action-bar {
         border: solid thin lighten(black, 60);
         border-radius: 5px;
         position: absolute;
         top: 3px;
         right: 5px;
 
-        .secretary-btn {
+        .chronicle-btn {
             border-right: solid thin lighten(black, 60);
             min-width: 25px;
             padding: 0 5px;

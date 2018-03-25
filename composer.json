@@ -1,8 +1,8 @@
 {
-    "name": "codymoorhouse/secretary",
+    "name": "codymoorhouse/chronicle",
     "description": "A note sharing library that lets users interact with eachother using file uploads and comments.",
-    "keywords": ["notes", "files", "comments", "secretary", "laravel"],
-    "homepage": "https://github.com/codymoorhouse/secretary",
+    "keywords": ["notes", "files", "comments", "chronicle", "laravel"],
+    "homepage": "https://github.com/codymoorhouse/chronicle",
     "type": "library",
     "license": "ISC",
     "authors": [
@@ -19,7 +19,7 @@
     },
     "autoload": {
         "psr-4": {
-            "CodyMoorhouse\\Secretary\\": "src/"
+            "CodyMoorhouse\\Chronicle\\": "src/"
         }
     },
     "extra": {
@@ -28,7 +28,7 @@
         },
         "laravel": {
             "providers": [
-                "CodyMoorhouse\\Secretary\\SecretaryServiceProvider"
+                "CodyMoorhouse\\Chronicle\\ChronicleServiceProvider"
             ]
         }
     },

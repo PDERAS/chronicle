@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Controllers;
+namespace CodyMoorhouse\Chronicle\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,20 +10,20 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 
 /* Models */
-use CodyMoorhouse\Secretary\Models\Media;
+use CodyMoorhouse\Chronicle\Models\Media;
 
 /* Requests */
-use CodyMoorhouse\Secretary\Requests\Media\DestroyRequest;
-use CodyMoorhouse\Secretary\Requests\Media\StoreRequest;
-use CodyMoorhouse\Secretary\Requests\Media\UpdateRequest;
+use CodyMoorhouse\Chronicle\Requests\Media\DestroyRequest;
+use CodyMoorhouse\Chronicle\Requests\Media\StoreRequest;
+use CodyMoorhouse\Chronicle\Requests\Media\UpdateRequest;
 
 class MediaController extends Controller
 {
     /**
      * Destroy media in the system.
      *
-     * @param CodyMoorhouse\Secretary\Models\Media $media
-     * @param CodyMoorhouse\Secretary\Requests\Media\DestroyRequest $request
+     * @param CodyMoorhouse\Chronicle\Models\Media $media
+     * @param CodyMoorhouse\Chronicle\Requests\Media\DestroyRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -36,7 +36,7 @@ class MediaController extends Controller
                 return Response::json([
                     'message'   =>  'Media deleted successfully',
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'media'  =>  [$e]
@@ -47,7 +47,7 @@ class MediaController extends Controller
     /**
      * Stores media into a note.
      *
-     * @param CodyMoorhouse\Secretary\Requests\Media\StoreRequest $request
+     * @param CodyMoorhouse\Chronicle\Requests\Media\StoreRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -66,12 +66,12 @@ class MediaController extends Controller
                 ]);
 
                 /* Save file to disk */
-                Storage::disk(config('secretary.disk'))->put($filename, File::get($file));
+                Storage::disk(config('chronicle.disk'))->put($filename, File::get($file));
 
                 return Response::json([
                     'message'   =>  'Media created successfully',
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'media'  =>  [$e]
@@ -82,8 +82,8 @@ class MediaController extends Controller
     /**
      * Update a media in the system.
      *
-     * @param CodyMoorhouse\Secretary\Models\Media $media
-     * @param CodyMoorhouse\Secretary\Requests\Media\UpdateRequest $request
+     * @param CodyMoorhouse\Chronicle\Models\Media $media
+     * @param CodyMoorhouse\Chronicle\Requests\Media\UpdateRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -98,7 +98,7 @@ class MediaController extends Controller
                 return Response::json([
                     'message'   =>  'Media updated successfully',
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'comments'  =>  [$e]

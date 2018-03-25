@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Requests\Sections;
+namespace CodyMoorhouse\Chronicle\Requests\Sections;
 
 use Illuminate\Foundation\Http\FormRequest;
 

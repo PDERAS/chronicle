@@ -1,13 +1,13 @@
 <?php
 
-namespace CodyMoorhouse\Secretary;
+namespace CodyMoorhouse\Chronicle;
 
 use Illuminate\Support\ServiceProvider;
 
 /* Command */
-use CodyMoorhouse\Secretary\Commands\SectionCommand;
+use CodyMoorhouse\Chronicle\Commands\SectionCommand;
 
-class SecretaryServiceProvider extends ServiceProvider
+class ChronicleServiceProvider extends ServiceProvider
 {
     /**
      * Register bindings in the container.
@@ -16,7 +16,7 @@ class SecretaryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/config/secretary.php', 'secretary');
+        $this->mergeConfigFrom(__DIR__.'/config/chronicle.php', 'chronicle');
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->loadRoutesFrom(__DIR__ .'/routes.php');
     }
@@ -29,12 +29,12 @@ class SecretaryServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__.'/config/secretary.php' => config_path('secretary.php'),
+            __DIR__.'/config/chronicle.php' => config_path('chronicle.php'),
         ]);
 
         $this->publishes([
-            __DIR__.'/assets/js/components' => base_path('resources/assets/js/components/secretary'),
-        ], 'secretary-components');
+            __DIR__.'/assets/js/components' => base_path('resources/assets/js/components/chronicle'),
+        ], 'chronicle-components');
 
         if ($this->app->runningInConsole()) {
             $this->commands([

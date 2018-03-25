@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Requests\Media;
+namespace CodyMoorhouse\Chronicle\Requests\Media;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;

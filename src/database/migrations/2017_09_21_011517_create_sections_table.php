@@ -13,7 +13,7 @@ class CreateSectionsTable extends Migration
      */
     public function up()
     {
-        $sections_table = config('secretary.sections_table');
+        $sections_table = config('chronicle.sections_table');
 
         Schema::create($sections_table, function(Blueprint $table) {
             $table->increments('id');
@@ -37,8 +37,8 @@ class CreateSectionsTable extends Migration
      */
     public function down()
     {
-        $sections_table = config('secretary.sections_table');
+        $sections_table = config('chronicle.sections_table');
 
-        Schema::dropIfExists(config('secretary.sections_table'));
+        Schema::dropIfExists(config('chronicle.sections_table'));
     }
 }

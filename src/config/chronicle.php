@@ -6,7 +6,7 @@ return [
     | Previous Tables
     |--------------------------------------------------------------------------
     |
-    | Secretary is a note taking library that logs notes based on the logged in
+    | Chronicle is a note taking library that logs notes based on the logged in
     | user. As such, you can customize the tables and the used column fields here.
     |
     */
@@ -29,7 +29,7 @@ return [
     | New Table Names
     |--------------------------------------------------------------------------
     |
-    | These are the new tables that will be created through the secretary
+    | These are the new tables that will be created through the chronicle
     | migrations.
     |
     */

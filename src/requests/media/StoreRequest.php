@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Requests\Media;
+namespace CodyMoorhouse\Chronicle\Requests\Media;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
      */
     public function rules()
     {
-        $notes_table = config('secretary.notes_table');
+        $notes_table = config('chronicle.notes_table');
 
         return [
             'file'      =>  'required|file',

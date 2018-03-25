@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Controllers;
+namespace CodyMoorhouse\Chronicle\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Schema;
 
 /* Models */
-use CodyMoorhouse\Secretary\Models\Section;
+use CodyMoorhouse\Chronicle\Models\Section;
 
 /* Requests */
-use CodyMoorhouse\Secretary\Requests\Sections\IndexRequest;
-use CodyMoorhouse\Secretary\Requests\Sections\NotesRequest;
+use CodyMoorhouse\Chronicle\Requests\Sections\IndexRequest;
+use CodyMoorhouse\Chronicle\Requests\Sections\NotesRequest;
 
 class SectionsController extends Controller
 {
@@ -20,7 +20,7 @@ class SectionsController extends Controller
     /**
      * Gets a section
      *
-     * @param CodyMoorhouse\Secretary\Models\Sections\Section $section
+     * @param CodyMoorhouse\Chronicle\Models\Sections\Section $section
      *
      * @return \Illuminate\Http\Response
      */
@@ -31,7 +31,7 @@ class SectionsController extends Controller
                 return Response::json([
                     'section'   =>  $section
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'sections'  =>  [$e]
@@ -42,7 +42,7 @@ class SectionsController extends Controller
     /**
      * Get a listing of sections based on the $request input parameters.
      *
-     * @param CodyMoorhouse\Secretary\Requests\Sections\IndexRequest $request
+     * @param CodyMoorhouse\Chronicle\Requests\Sections\IndexRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -50,7 +50,7 @@ class SectionsController extends Controller
     {
         try {
             return DB::transaction(function() use ($request) {
-                $sections_table = config('secretary.sections_table');
+                $sections_table = config('chronicle.sections_table');
                 $sections_query = Section::select('*');
 
                 foreach ($request->all() as $key => $value) {
@@ -70,7 +70,7 @@ class SectionsController extends Controller
                 $sections = $request->has('paginate') ? $sections_query->paginate($request->paginate) : $sections_query->get();
 
                 return Response::json($sections);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'sections'  =>  [$e]
@@ -81,8 +81,8 @@ class SectionsController extends Controller
     /**
      * Gets the notes for a section
      *
-     * @param CodyMoorhouse\Secretary\Requests\Sections\NotesRequest $request
-     * @param CodyMoorhouse\Secretary\Models\Sections\Section $section
+     * @param CodyMoorhouse\Chronicle\Requests\Sections\NotesRequest $request
+     * @param CodyMoorhouse\Chronicle\Models\Sections\Section $section
      *
      * @return \Illuminate\Http\Response
      */
@@ -92,7 +92,7 @@ class SectionsController extends Controller
             return DB::transaction(function() use ($request, $section) {
                 $notes = $section->notes()
                     ->where('section_ref_slug', $request->slug)
-                    ->paginate(config('secretary.paginate_amount');
+                    ->paginate(config('chronicle.paginate_amount');
 
                 foreach ($notes as $note) {
                     $note->user;
@@ -101,7 +101,7 @@ class SectionsController extends Controller
                 return Response::json([
                     'notes'   =>  $notes
                 ]);
-            }, config('secretary.db_attempts'));
+            }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
             return Response::json([
                 'sections'  =>  [$e]

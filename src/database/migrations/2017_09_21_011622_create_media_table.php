@@ -13,12 +13,12 @@ class CreateMediaTable extends Migration
      */
     public function up()
     {
-        $media_table    = config('secretary.media_table');
+        $media_table    = config('chronicle.media_table');
 
         Schema::create($media_table, function(Blueprint $table) {
-            $notes_table    = config('secretary.notes_table');
-            $users_table    = config('secretary.users_table');
-            $users_table_id = config('secretary.users_table_id');
+            $notes_table    = config('chronicle.notes_table');
+            $users_table    = config('chronicle.users_table');
+            $users_table_id = config('chronicle.users_table_id');
 
             $table->increments('id');
             $table->unsignedInteger('note_id');
@@ -48,7 +48,7 @@ class CreateMediaTable extends Migration
      */
     public function down()
     {
-        $media_table    = config('secretary.media_table');
+        $media_table    = config('chronicle.media_table');
 
         Schema::dropIfExists($media_table);
     }

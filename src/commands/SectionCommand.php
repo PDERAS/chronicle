@@ -1,10 +1,10 @@
 <?php
-namespace CodyMoorhouse\Secretary\Commands;
+namespace CodyMoorhouse\Chronicle\Commands;
 
 use Illuminate\Console\Command;
 
 /* Models */
-use CodyMoorhouse\Secretary\Models\Section;
+use CodyMoorhouse\Chronicle\Models\Section;
 
 class SectionCommand extends Command
 {
@@ -13,7 +13,7 @@ class SectionCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'secretary:section
+    protected $signature = 'chronicle:section
             {--tag= : The tag of the section}
             {--title= : The title of the section}';
 
@@ -22,12 +22,12 @@ class SectionCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Create a section for the secretary package for notes to be stored in.';
+    protected $description = 'Create a section for the chronicle package for notes to be stored in.';
 
     /**
      * Execute the console command.
      *
-     * @param  \CodyMoorhouse\Secretary\Models\Section $section
+     * @param  \CodyMoorhouse\Chronicle\Models\Section $section
      * @return void
      */
     public function handle()

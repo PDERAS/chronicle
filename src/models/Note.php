@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Secretary\Models;
+namespace CodyMoorhouse\Chronicle\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -53,7 +53,7 @@ class Note extends Model
     public function newInstance($attributes = [], $exists = false)
     {
         $model = parent::newInstance($attributes, $exists);
-        $model->setTable(config('secretary.notes_table'));
+        $model->setTable(config('chronicle.notes_table'));
         return $model;
     }
 
@@ -62,7 +62,7 @@ class Note extends Model
      */
     public function comments()
     {
-        return $this->hasMany('CodyMoorhouse\Secretary\Models\Comment');
+        return $this->hasMany('CodyMoorhouse\Chronicle\Models\Comment');
     }
 
     /**
@@ -70,7 +70,7 @@ class Note extends Model
      */
     public function media()
     {
-        return $this->hasMany('CodyMoorhouse\Secretary\Models\Media');
+        return $this->hasMany('CodyMoorhouse\Chronicle\Models\Media');
     }
 
     /**
@@ -78,7 +78,7 @@ class Note extends Model
      */
     public function user()
     {
-        return $this->belongsTo(config('secretary.users_model'))
-            ->select(config('secretary.users_table_name') . ' as name');
+        return $this->belongsTo(config('chronicle.users_model'))
+            ->select(config('chronicle.users_table_name') . ' as name');
     }
 }
