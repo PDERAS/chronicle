@@ -39,11 +39,11 @@
                     <span class="secretary-note-time">{{ formatDate(createDate(note.created_at)) }}</span>
                 </div>
                 <div class="secretary-note-content">
-                    <div>{{ note.description }}</div>
+                    <div class="secretary-note-description">{{ note.description }}</div>
                 </div>
 
                 <div class="secretary-action-bar" v-if="actionBarId == note.id">
-                    <button class="secretary-btn action" @click="openModal('view')">
+                    <button class="secretary-btn action" @click="openModal('view', note)">
                         <i class="fas fa-info" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Info</div>
                     </button>
@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <secretary-modal :action="modalAction" :note="{}" :ref-slug="refSlug" v-if="showModal" @close-modal="closeModal" />
+        <secretary-modal :action="modalAction" :note="modalNote" :ref-slug="refSlug" v-if="showModal" @close-modal="closeModal" />
     </div>
 </template>
 
@@ -116,6 +116,7 @@
             notes: [],
 
             modalAction: 'view',
+            modalNote: null,
             showModal: false,
         }),
 
@@ -143,6 +144,7 @@
             },
 
             closeModal() {
+                this.modalNote = null;
                 this.showModal = false;
             },
 
@@ -227,7 +229,8 @@
                 document.head.appendChild(fontAwesomeScript);
             },
 
-            openModal(action) {
+            openModal(action, note) {
+                this.modalNote = note;
                 this.modalAction = action;
                 this.showModal = true;
             },
@@ -271,6 +274,12 @@
 
     .secretary-display {
         font-family: Helvetica, sans-serif;
+    }
+
+    .secretary-note-description {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
 
     .secretary-note-time {

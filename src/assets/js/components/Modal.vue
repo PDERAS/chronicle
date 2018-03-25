@@ -3,12 +3,12 @@
         <div class="secretary-modal-mask" @click.self="emitCloseModal">
                 <div class="secretary-modal-wrapper">
                     <div class="secretary-modal-header">
-                        Title
+                        <template v-if="action =='view'">Note Information</template>
                         <span class="secretary-modal-close" @click="emitCloseModal">&times;</span>
                     </div>
 
                     <div class="secretary-modal-content">
-                        Content
+                        <template v-if="action =='view'">{{ note.description }}</template>
                     </div>
 
                     <div class="secretary-modal-footer">
@@ -78,7 +78,7 @@
     /* Modal Header */
     .secretary-modal-header {
         padding: 5px 15px;
-        background-color: #5cb85c;
+        background-color: #3f3f3f;
         color: white;
         font-size: 20px;
 
@@ -95,7 +95,7 @@
     /* Modal Footer */
     .secretary-modal-footer {
         padding: 5px 15px;
-        background-color: #5cb85c;
+        background-color: #3f3f3f;
         color: white;
 
         -webkit-border-radius: 0px 0px 5px 5px;
