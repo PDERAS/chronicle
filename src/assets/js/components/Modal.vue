@@ -3,16 +3,23 @@
         <div class="chronicle-modal-mask" @click.self="emitCloseModal">
                 <div class="chronicle-modal-wrapper">
                     <div class="chronicle-modal-header">
+                        <template v-if="action =='delete'">Confirmation</template>
                         <template v-if="action =='view'">Note Information</template>
                         <span class="chronicle-modal-close" @click="emitCloseModal">&times;</span>
                     </div>
 
                     <div class="chronicle-modal-content">
+                        <template v-if="action =='delete'">Are you sure you want to delete this note?</template>
                         <template v-if="action =='view'">{{ note.description }}</template>
                     </div>
 
                     <div class="chronicle-modal-footer">
-                        Footer
+                        <button class="chronicle-modal-btn" @click="destroy(note)">
+                            Confirm
+                        </button>
+                        <button class="chronicle-modal-btn" @click="emitCloseModal">
+                            Close
+                        </button>
                     </div>
                 </div>
             </transition>
@@ -42,6 +49,15 @@
         },
 
         methods: {
+            destroy(note) {
+                var url = '/notes/' + note.id;
+
+                axios.delete(url).then(r => {
+                    this.$emit('get-notes');
+                    this.emitCloseModal();
+                });
+            },
+
             emitCloseModal() {
                 this.$emit('close-modal');
             }
@@ -94,13 +110,34 @@
 
     /* Modal Footer */
     .chronicle-modal-footer {
+        text-align: right;
+        border-top: solid 1px #3f3f3f;
         padding: 5px 15px;
-        background-color: #3f3f3f;
+        background-color: #ffffff;
         color: white;
+        color: #3f3f3f;
 
         -webkit-border-radius: 0px 0px 5px 5px;
         -moz-border-radius: 0px 0px 5px 5px;
         border-radius: 0px 0px 5px 5px;
+    }
+
+    /* Modal Button */
+    .chronicle-modal-btn {
+        background: #3f3f3f;
+        padding: 5px 10px;
+        color: white;
+        font-size: 14px;
+        cursor: pointer;
+
+        -webkit-appearance: none;
+        -webkit-border-radius:5px;
+        -moz-border-radius: 5px;
+        border-radius: 5px;
+
+        &:hover {
+            color: black;
+        }
     }
 
     /* Modal Content */

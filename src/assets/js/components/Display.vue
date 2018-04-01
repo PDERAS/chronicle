@@ -55,7 +55,7 @@
                         <i class="fas fa-edit" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Edit</div>
                     </button>
-                    <button class="chronicle-btn action" @click="destroy(note)">
+                    <button class="chronicle-btn action" @click="openModal('delete', note)">
                         <i class="fas fa-trash" v-if="useFontAwesome" />
                         <div class="x-small" v-else>Delete</div>
                     </button>
@@ -63,7 +63,7 @@
             </div>
         </div>
 
-        <chronicle-modal :action="modalAction" :note="modalNote" :ref-slug="refSlug" v-if="showModal" @close-modal="closeModal" />
+        <chronicle-modal :action="modalAction" :note="modalNote" :ref-slug="refSlug" v-if="showModal" @close-modal="closeModal" @get-notes="getNotes" />
     </div>
 </template>
 
@@ -146,14 +146,6 @@
             closeModal() {
                 this.modalNote = null;
                 this.showModal = false;
-            },
-
-            destroy(note) {
-                var url = '/notes/' + note.id;
-
-                axios.delete(url).then(r => {
-                    this.getNotes(this.currentPage);
-                });
             },
 
             formatDate(date) {
