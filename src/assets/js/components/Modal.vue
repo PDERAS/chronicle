@@ -136,7 +136,13 @@
         border-radius: 5px;
 
         &:hover {
-            color: black;
+            background: #4e4e4e;
+            cursor: pointer;
+            color: white;
+
+            -webkit-box-shadow: 1px 1px 5px #999999;
+            -moz-box-shadow: 1px 1px 5px #999999;
+            box-shadow: 1px 1px 5px #999999;
         }
     }
 
