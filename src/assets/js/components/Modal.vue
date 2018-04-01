@@ -3,18 +3,18 @@
         <div class="chronicle-modal-mask" @click.self="emitCloseModal">
                 <div class="chronicle-modal-wrapper">
                     <div class="chronicle-modal-header">
-                        <template v-if="action =='delete'">Confirmation</template>
-                        <template v-if="action =='view'">Note Information</template>
+                        <template v-if="action == 'delete'">Confirmation</template>
+                        <template v-if="action == 'view'">Note Information</template>
                         <span class="chronicle-modal-close" @click="emitCloseModal">&times;</span>
                     </div>
 
                     <div class="chronicle-modal-content">
-                        <template v-if="action =='delete'">Are you sure you want to delete this note?</template>
-                        <template v-if="action =='view'">{{ note.description }}</template>
+                        <template v-if="action == 'delete'">Are you sure you want to delete this note?</template>
+                        <template v-if="action == 'view'">{{ note.description }}</template>
                     </div>
 
                     <div class="chronicle-modal-footer">
-                        <button class="chronicle-modal-btn" @click="destroy(note)">
+                        <button class="chronicle-modal-btn" @click="destroy(note)" v-if="action == 'delete'">
                             Confirm
                         </button>
                         <button class="chronicle-modal-btn" @click="emitCloseModal">
