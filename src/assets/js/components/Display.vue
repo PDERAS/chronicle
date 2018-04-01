@@ -332,13 +332,19 @@
     .chronicle-action-bar {
         border: solid thin lighten(black, 60);
         border-radius: 5px;
+        background: white;
         position: absolute;
-        top: 3px;
+        top: -5px;
         right: 5px;
+
+        -webkit-box-shadow: 1px 1px 5px #999999;
+        -moz-box-shadow: 1px 1px 5px #999999;
+        box-shadow: 1px 1px 5px #999999;
 
         .chronicle-btn {
             border-right: solid thin lighten(black, 60);
-            min-width: 25px;
+            min-width: 30px;
+            font-size: 14px;
             padding: 0 5px;
             text-align: center;
             width: auto;
