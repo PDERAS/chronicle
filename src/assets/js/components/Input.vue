@@ -1,6 +1,6 @@
 <template>
     <div class="chronicle-input">
-        <textarea @input="$emit('input', description)" v-model="description"></textarea>
+        <textarea placeholder="Enter your note..." @input="$emit('input', description)" v-model="description" :rows="line_breaks + 1" />
     </div>
 </template>
 
@@ -16,8 +16,15 @@
         },
 
         data: () => ({
-            description: null
+            description: null,
+            line_breaks: 0,
         }),
+
+        watch: {
+            description(val) {
+                this.line_breaks = (val.match(/\n/g)||[]).length;
+            }
+        },
 
         mounted() {
             this.description = this.value;
@@ -29,9 +36,11 @@
     .chronicle-input {
         textarea {
             width: 100%;
-            padding: 0;
+            padding: 10px;
             resize: none;
             min-height: 50px;
+            box-sizing: border-box;
+            outline: none;
         }
     }
 </style>

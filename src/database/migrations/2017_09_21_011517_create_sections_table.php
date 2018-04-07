@@ -20,9 +20,10 @@ class CreateSectionsTable extends Migration
             $table->string('title');
             $table->string('tag')->unique();
             $table->enum('access_type', ['PRIVATE', 'PUBLIC'])->default('PUBLIC');
-            $table->enum('type', ['DOCUMENT', 'NOTE'])->default('NOTE');
+            $table->enum('type', ['MEDIA', 'NOTE'])->default('NOTE');
             $table->boolean('is_attachments_allowed')->default(true);
             $table->boolean('is_comments_allowed')->default(true);
+            $table->boolean('is_deleting_allowed')->default(true);
             $table->boolean('is_editing_allowed')->default(true);
             $table->boolean('is_tasks_allowed')->default(true);
             $table->boolean('is_approval_required')->default(false);

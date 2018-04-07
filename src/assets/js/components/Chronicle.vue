@@ -223,7 +223,7 @@
         }
     }
 
-    .chronicle-display {
+    .chronicle {
         font-family: Helvetica, sans-serif;
     }
 

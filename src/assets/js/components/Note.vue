@@ -8,7 +8,7 @@
             <div class="chronicle-note-description">{{ note.description }}</div>
         </div>
 
-        <chronicle-action-bar @open-modal="openModal" :use-font-awesome="useFontAwesome" v-if="showActionBar" />
+        <chronicle-action-bar :section="section"  :use-font-awesome="useFontAwesome" @open-modal="openModal" v-if="showActionBar" />
     </div>
 </template>
 
@@ -24,6 +24,11 @@
 
         props: {
             note: {
+                type: Object,
+                required: true
+            },
+
+            section: {
                 type: Object,
                 required: true
             },

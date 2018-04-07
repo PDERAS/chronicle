@@ -13,17 +13,30 @@
                         <chronicle-input v-model="description" />
                     </div>
                     <div class="chronicle-modal-footer">
-                        <button class="chronicle-btn block" @click="save">
-                            Save
+                        <button class="chronicle-btn block" @click="store">
+                            Save and Close
                         </button>
-                        <button class="chronicle-btn block" @click="emitCloseModal">
-                            Close
+                    </div>
+                </template>
+
+                <!-- Edit Note !-->
+                <template v-else-if="action == 'edit'">
+                    <div class="chronicle-modal-header">
+                        Edit Note
+                        <span class="chronicle-modal-close" @click="emitCloseModal">&times;</span>
+                    </div>
+                    <div class="chronicle-modal-content">
+                        <chronicle-input v-model="description" />
+                    </div>
+                    <div class="chronicle-modal-footer">
+                        <button class="chronicle-btn block" @click="update">
+                            Save and Close
                         </button>
                     </div>
                 </template>
 
                 <!-- View Note !-->
-                <template v-if="action == 'view'">
+                <template v-else-if="action == 'view'">
                     <div class="chronicle-modal-header">
                         Note Information
                         <span class="chronicle-modal-close" @click="emitCloseModal">&times;</span>
@@ -45,10 +58,7 @@
                     <div class="chronicle-modal-content">Are you sure you want to delete this note?</div>
                     <div class="chronicle-modal-footer">
                         <button class="chronicle-btn block" @click="destroy(note)">
-                            Confirm
-                        </button>
-                        <button class="chronicle-btn block" @click="emitCloseModal">
-                            Close
+                            Confirm and Close
                         </button>
                     </div>
                 </template>
@@ -93,6 +103,12 @@
             description: null,
         }),
 
+        created() {
+            if (this.note) {
+                this.description = this.note.description;
+            }
+        },
+
         methods: {
             destroy(note) {
                 var url = '/notes/' + note.id;
@@ -107,13 +123,26 @@
                 this.$emit('close-modal');
             },
 
-            save() {
+            store() {
                 var params = {
                     description: this.description,
                     section_tag: this.section.tag,
                     section_ref: this.refSlug
                 }
                 axios.post('/notes', params).then(() => {
+                    this.description = null;
+                    this.$emit('get-notes', this.section.tag);
+                    this.emitCloseModal();
+                });
+            },
+
+            update() {
+                var params = {
+                    description: this.description,
+                    section_tag: this.section.tag,
+                    section_ref: this.refSlug
+                }
+                axios.patch('/notes/' + this.note.id, params).then(() => {
                     this.description = null;
                     this.$emit('get-notes', this.section.tag);
                     this.emitCloseModal();

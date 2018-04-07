@@ -25,7 +25,7 @@ class IndexRequest extends FormRequest
     {
         return [
             'access_type'               =>  'in:private,public',
-            'section_type'              =>  'in:note,document',
+            'section_type'              =>  'in:media,note',
             'title'                     =>  'string',
             'tag'                       =>  'string',
             'is_commenting_allowed'     =>  'boolean',

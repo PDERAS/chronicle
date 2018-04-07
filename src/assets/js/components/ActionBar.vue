@@ -4,15 +4,19 @@
             <i class="fas fa-info" v-if="useFontAwesome" />
             <div class="x-small" v-else>Info</div>
         </button>
-        <button class="chronicle-btn action">
+        <button class="chronicle-btn action" v-if="section.is_comments_allowed">
             <i class="fas fa-comments" v-if="useFontAwesome" />
             <div class="x-small" v-else>Comments</div>
         </button>
-        <button class="chronicle-btn action">
+        <button class="chronicle-btn action" v-if="section.is_attachments_allowed">
+            <i class="fas fa-file" v-if="useFontAwesome" />
+            <div class="x-small" v-else>Files</div>
+        </button>
+        <button class="chronicle-btn action" @click="openModal('edit')" v-if="section.is_editing_allowed">
             <i class="fas fa-edit" v-if="useFontAwesome" />
             <div class="x-small" v-else>Edit</div>
         </button>
-        <button class="chronicle-btn action" @click="openModal('delete')">
+        <button class="chronicle-btn action" @click="openModal('delete')" v-if="section.is_deleting_allowed">>
             <i class="fas fa-trash" v-if="useFontAwesome" />
             <div class="x-small" v-else>Delete</div>
         </button>
@@ -24,6 +28,11 @@
         name: 'chronicle-action-bar',
 
         props: {
+            section: {
+                type: Object,
+                required: true
+            },
+
             useFontAwesome: {
                 type: Boolean,
                 default: true
