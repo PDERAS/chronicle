@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Response;
 
 /* Models */
 use CodyMoorhouse\Chronicle\Models\Note;
+use CodyMoorhouse\Chronicle\Models\Section;
 
 /* Requests */
 use CodyMoorhouse\Chronicle\Requests\Notes\DestroyRequest;
@@ -64,10 +65,11 @@ class NotesController extends Controller
     {
         try {
             return DB::transaction(function() use ($request) {
+                $section = Section::where('tag', $request->section_tag)->first();
                 Note::create([
                     'description'       =>  $request->description,
-                    'section_id'        =>  $request->section_id,
-                    'section_ref_slug'  =>  $request->section_ref_slug,
+                    'section_id'        =>  $section->id,
+                    'section_ref_slug'  =>  $request->section_ref,
                     'user_id'           =>  Auth::id()
                 ]);
 

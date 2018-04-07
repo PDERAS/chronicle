@@ -26,9 +26,9 @@ class StoreRequest extends FormRequest
         $sections_table = config('chronicle.sections_table');
 
         return [
-            'description'       =>  'required|string',
-            'section_id'        =>  'required|exists:' . $sections_table . ',id',
-            'section_ref_slug'  =>  'required|string',
+            'description'   =>  'required|string',
+            'section_tag'   =>  'required|exists:' . $sections_table . ',tag',
+            'section_ref'   =>  'required|string',
         ];
     }
 }
