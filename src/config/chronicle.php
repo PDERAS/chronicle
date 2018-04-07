@@ -16,14 +16,6 @@ return [
     'users_table_name'      =>  'name',
     'users_model'           =>  'App\User',
 
-    /* Optional */
-    'companies_table'       =>  'companies',
-    'companies_table_id'    =>  'id',
-    'companies_table_name'  =>  'name',
-
-    'roles_table'           =>  'roles',
-    'roles_table_id'        =>  'id',
-
     /*
     |--------------------------------------------------------------------------
     | New Table Names
@@ -34,7 +26,6 @@ return [
     |
     */
     'sections_table'        =>  'sections',
-    'role_section_table'    =>  'role_section',
     'notes_table'           =>  'notes',
     'comments_table'        =>  'comments',
     'media_table'           =>  'media',
