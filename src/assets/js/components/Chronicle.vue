@@ -37,7 +37,7 @@
                     </div>
 
                     <div class="chronicle-content">
-                        <chronicle-note v-for="note in notes":key="note.id" :note="note" :ref-slug="refSlug" :section="section" @open-modal="openModal" />
+                        <chronicle-note v-for="note in notes" :key="note.id" :note="note" :ref-slug="refSlug" :section="section" :user="user" @open-modal="openModal" />
                     </div>
                 </div>
             </template>
@@ -100,6 +100,11 @@
             useFontAwesome: {
                 type: Boolean,
                 default: true
+            },
+
+            user: {
+                type: Object,
+                default: () => new Object()
             }
         },
 

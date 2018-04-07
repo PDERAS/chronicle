@@ -85,7 +85,7 @@
 
             note: {
                 type: Object,
-                default: () => {}
+                default: () => new Object()
             },
 
             refSlug: {

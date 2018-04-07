@@ -12,11 +12,11 @@
             <i class="fas fa-file" v-if="useFontAwesome" />
             <div class="x-small" v-else>Files</div>
         </button>
-        <button class="chronicle-btn action" @click="openModal('edit')" v-if="section.is_editing_allowed">
+        <button class="chronicle-btn action" @click="openModal('edit')" v-if="section.is_editing_allowed && note.user_id == user.id">
             <i class="fas fa-edit" v-if="useFontAwesome" />
             <div class="x-small" v-else>Edit</div>
         </button>
-        <button class="chronicle-btn action" @click="openModal('delete')" v-if="section.is_deleting_allowed">>
+        <button class="chronicle-btn action" @click="openModal('delete')" v-if="section.is_deleting_allowed && note.user_id == user.id">
             <i class="fas fa-trash" v-if="useFontAwesome" />
             <div class="x-small" v-else>Delete</div>
         </button>
@@ -28,6 +28,11 @@
         name: 'chronicle-action-bar',
 
         props: {
+            note: {
+                type: Object,
+                required: true
+            },
+
             section: {
                 type: Object,
                 required: true
@@ -36,6 +41,11 @@
             useFontAwesome: {
                 type: Boolean,
                 default: true
+            },
+
+            user: {
+                type: Object,
+                required: true
             }
         },
 

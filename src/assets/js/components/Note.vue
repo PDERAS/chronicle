@@ -8,7 +8,7 @@
             <div class="chronicle-note-description">{{ note.description }}</div>
         </div>
 
-        <chronicle-action-bar :section="section"  :use-font-awesome="useFontAwesome" @open-modal="openModal" v-if="showActionBar" />
+        <chronicle-action-bar :note="note" :section="section" :use-font-awesome="useFontAwesome" :user="user" @open-modal="openModal" v-if="showActionBar" />
     </div>
 </template>
 
@@ -36,6 +36,11 @@
             useFontAwesome: {
                 type: Boolean,
                 default: true
+            },
+
+            user: {
+                type: Object,
+                required: true
             }
         },
 
