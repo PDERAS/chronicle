@@ -4,14 +4,19 @@ namespace CodyMoorhouse\Chronicle;
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => ['web', 'auth']], function() {
-    $namespace = 'CodyMoorhouse\\Chronicle\\';
-    $controllers = $namespace . 'Controllers\\';
+Route::group([ 'namespace' => 'CodyMoorhouse\Chronicle\Controllers', 'middleware' => 'web' ], function() {
+    Route::group([ 'prefix' => 'sections' ], function() {
+        Route::get('/{section}/notes', 'SectionsController@getNotes');
+        Route::get('/{section}', 'SectionsController@get');
+        Route::get('/', 'SectionsController@index');
+    });
+});
 
-    Route::resource('/comments', $controllers . 'CommentsController', [ 'only' => [
+Route::group([ 'namespace' => 'CodyMoorhouse\Chronicle\Controllers', 'middleware' => ['web', 'auth']], function() {
+    Route::resource('/comments', 'CommentsController', [ 'only' => [
         'destroy', 'store', 'update'
     ]]);
-    Route::resource('/media', $controllers . 'MediaController', [
+    Route::resource('/media', 'MediaController', [
         'parameters' => [
             'media' => 'media'
         ],
@@ -19,13 +24,7 @@ Route::group(['middleware' => ['web', 'auth']], function() {
             'destroy', 'store', 'update'
         ]
     ]);
-    Route::resource('/notes', $controllers . 'NotesController', [ 'only' => [
+    Route::resource('/notes', 'NotesController', [ 'only' => [
         'destroy', 'store', 'update'
     ]]);
-
-    Route::group([ 'prefix' => 'sections' ], function() use ($controllers) {
-        Route::get('/{section}/notes', $controllers . 'SectionsController@getNotes');
-        Route::get('/{section}', $controllers . 'SectionsController@get');
-        Route::get('/', $controllers . 'SectionsController@index');
-    });
 });

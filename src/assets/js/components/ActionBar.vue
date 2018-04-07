@@ -4,7 +4,7 @@
             <i class="fas fa-info" v-if="useFontAwesome" />
             <div class="x-small" v-else>Info</div>
         </button>
-        <button class="chronicle-btn action" v-if="section.is_comments_allowed">
+        <button class="chronicle-btn action" v-if="section.is_comments_allowed && user">
             <i class="fas fa-comments" v-if="useFontAwesome" />
             <div class="x-small" v-else>Comments</div>
         </button>
@@ -12,14 +12,16 @@
             <i class="fas fa-file" v-if="useFontAwesome" />
             <div class="x-small" v-else>Files</div>
         </button>
-        <button class="chronicle-btn action" @click="openModal('edit')" v-if="section.is_editing_allowed && note.user_id == user.id">
-            <i class="fas fa-edit" v-if="useFontAwesome" />
-            <div class="x-small" v-else>Edit</div>
-        </button>
-        <button class="chronicle-btn action" @click="openModal('delete')" v-if="section.is_deleting_allowed && note.user_id == user.id">
-            <i class="fas fa-trash" v-if="useFontAwesome" />
-            <div class="x-small" v-else>Delete</div>
-        </button>
+        <template v-if="user">
+            <button class="chronicle-btn action" @click="openModal('edit')" v-if="section.is_editing_allowed && note.user_id == user.id">
+                <i class="fas fa-edit" v-if="useFontAwesome" />
+                <div class="x-small" v-else>Edit</div>
+            </button>
+            <button class="chronicle-btn action" @click="openModal('delete')" v-if="section.is_deleting_allowed && note.user_id == user.id">
+                <i class="fas fa-trash" v-if="useFontAwesome" />
+                <div class="x-small" v-else>Delete</div>
+            </button>
+        </template>
     </div>
 </template>
 
@@ -44,8 +46,8 @@
             },
 
             user: {
-                type: Object,
-                required: true
+                validator: (val) =>  { return val === null || typeof val === 'object' },
+                default: () => new Object()
             }
         },
 

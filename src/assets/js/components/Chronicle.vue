@@ -42,7 +42,7 @@
                 </div>
             </template>
 
-            <template v-if="showInput">
+            <template v-if="showInput && user">
                 <div class="chronicle-footer">
                     <button class="chronicle-btn block" @click="openModal('add')">Add Note</button>
                 </div>
@@ -103,7 +103,7 @@
             },
 
             user: {
-                type: Object,
+                validator: (val) =>  { return val === null || typeof val === 'object' },
                 default: () => new Object()
             }
         },

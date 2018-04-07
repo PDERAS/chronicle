@@ -39,8 +39,8 @@
             },
 
             user: {
-                type: Object,
-                required: true
+                validator: (val) =>  { return val === null || typeof val === 'object' },
+                default: () => new Object()
             }
         },
 
