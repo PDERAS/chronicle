@@ -1,11 +1,6 @@
-    <template>
+<template>
     <div class="chronicle-input">
-        <textarea v-model="value"></textarea>
-
-        <button class="chronicle-btn save" @click="save">
-            <i class="fas fa-trash" v-if="useFontAwesome" />
-            <div class="x-small" v-else>Save</div>
-        </button>
+        <textarea @input="$emit('input', description)" v-model="description"></textarea>
     </div>
 </template>
 
@@ -14,41 +9,24 @@
         name: 'chronicle-input',
 
         props: {
-            refSlug: {
-                type: String,
-                required: true
-            },
-
-            section: {
-                type: Object,
+            value: {
+                validator: (val) =>  { return val === null || typeof val === 'string' },
                 required: true
             }
         },
 
         data: () => ({
-            value: null,
+            description: null
         }),
 
-        methods: {
-            save() {
-                var params = {
-                    description: this.value,
-                    section_tag: this.section.tag,
-                    section_ref: this.refSlug
-                }
-                axios.post('/notes', params).then(() => {
-                    this.value = null;
-                    this.$emit('refresh-section', this.section.tag);
-                });
-            }
+        mounted() {
+            this.description = this.value;
         }
     }
 </script>
 
 <style lang="scss">
     .chronicle-input {
-        margin: 10px 0;
-
         textarea {
             width: 100%;
             padding: 0;

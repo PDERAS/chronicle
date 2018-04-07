@@ -1,35 +1,71 @@
 <template>
     <div class="chronicle-modal">
         <div class="chronicle-modal-mask" @click.self="emitCloseModal">
-                <div class="chronicle-modal-wrapper">
+            <div class="chronicle-modal-wrapper">
+
+                <!-- Add Note !-->
+                <template v-if="action == 'add'">
                     <div class="chronicle-modal-header">
-                        <template v-if="action == 'delete'">Confirmation</template>
-                        <template v-if="action == 'view'">Note Information</template>
+                        Add Note
                         <span class="chronicle-modal-close" @click="emitCloseModal">&times;</span>
                     </div>
-
                     <div class="chronicle-modal-content">
-                        <template v-if="action == 'delete'">Are you sure you want to delete this note?</template>
-                        <template v-if="action == 'view'">{{ note.description }}</template>
+                        <chronicle-input v-model="description" />
                     </div>
-
                     <div class="chronicle-modal-footer">
-                        <button class="chronicle-modal-btn" @click="destroy(note)" v-if="action == 'delete'">
-                            Confirm
+                        <button class="chronicle-btn block" @click="save">
+                            Save
                         </button>
-                        <button class="chronicle-modal-btn" @click="emitCloseModal">
+                        <button class="chronicle-btn block" @click="emitCloseModal">
                             Close
                         </button>
                     </div>
-                </div>
-            </transition>
+                </template>
+
+                <!-- View Note !-->
+                <template v-if="action == 'view'">
+                    <div class="chronicle-modal-header">
+                        Note Information
+                        <span class="chronicle-modal-close" @click="emitCloseModal">&times;</span>
+                    </div>
+                    <div class="chronicle-modal-content">{{ note.description }}</div>
+                    <div class="chronicle-modal-footer">
+                        <button class="chronicle-btn block" @click="emitCloseModal">
+                            Close
+                        </button>
+                    </div>
+                </template>
+
+                <!-- Delete notes !-->
+                <template v-else-if="action == 'delete'">
+                    <div class="chronicle-modal-header">
+                        Confirmation
+                        <span class="chronicle-modal-close" @click="emitCloseModal">&times;</span>
+                    </div>
+                    <div class="chronicle-modal-content">Are you sure you want to delete this note?</div>
+                    <div class="chronicle-modal-footer">
+                        <button class="chronicle-btn block" @click="destroy(note)">
+                            Confirm
+                        </button>
+                        <button class="chronicle-btn block" @click="emitCloseModal">
+                            Close
+                        </button>
+                    </div>
+                </template>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    import ChronicleInput from './Input';
+
     export default {
         name: 'chronicle-modal',
+
+        components: {
+            ChronicleInput
+        },
 
         props: {
             action: {
@@ -39,14 +75,23 @@
 
             note: {
                 type: Object,
-                required: true
+                default: () => {}
             },
 
             refSlug: {
                 type: String,
                 required: true
+            },
+
+            section: {
+                type: Object,
+                required: true
             }
         },
+
+        data: () => ({
+            description: null,
+        }),
 
         methods: {
             destroy(note) {
@@ -60,6 +105,19 @@
 
             emitCloseModal() {
                 this.$emit('close-modal');
+            },
+
+            save() {
+                var params = {
+                    description: this.description,
+                    section_tag: this.section.tag,
+                    section_ref: this.refSlug
+                }
+                axios.post('/notes', params).then(() => {
+                    this.description = null;
+                    this.$emit('get-notes', this.section.tag);
+                    this.emitCloseModal();
+                });
             }
         }
     }
@@ -111,8 +169,7 @@
     /* Modal Footer */
     .chronicle-modal-footer {
         text-align: right;
-        border-top: solid 1px #3f3f3f;
-        padding: 5px 15px;
+        padding: 10px 15px;
         background-color: #ffffff;
         color: white;
         color: #3f3f3f;
@@ -122,36 +179,13 @@
         border-radius: 0px 0px 5px 5px;
     }
 
-    /* Modal Button */
-    .chronicle-modal-btn {
-        background: #3f3f3f;
-        padding: 5px 10px;
-        color: white;
-        font-size: 14px;
-        cursor: pointer;
-
-        -webkit-appearance: none;
-        -webkit-border-radius:5px;
-        -moz-border-radius: 5px;
-        border-radius: 5px;
-
-        &:hover {
-            background: #4e4e4e;
-            cursor: pointer;
-            color: white;
-
-            -webkit-box-shadow: 1px 1px 5px #999999;
-            -moz-box-shadow: 1px 1px 5px #999999;
-            box-shadow: 1px 1px 5px #999999;
-        }
-    }
-
     /* Modal Content */
     .chronicle-modal-content {
         position: relative;
         background-color: #fefefe;
         margin: auto;
         padding: 15px;
+        padding-bottom: 0;
     }
 
     /* The Close Button */
