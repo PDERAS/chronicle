@@ -1,6 +1,6 @@
 # Chronicle
 ```
-composer require codymoorhouse/chronicle:0.0.0-dev
+composer require codymoorhouse/chronicle
 ```
 
 ### Table Of Contents
@@ -9,7 +9,8 @@ composer require codymoorhouse/chronicle:0.0.0-dev
 3. [Requirements](#requirements)
 4. [Instructions](#instructions)
 5. [Usage](#usage)
-6. [License](#license)
+6. [Properties](#properties)
+7. [License](#license)
 
 ## About
 This package is designed for Laravel that lets users interact with eachother using notes that allow for file uploads and comments. Notes are tracked and held in sections and can have multiple files/comments attached.
@@ -20,13 +21,23 @@ To use this package, the following requiremenst must be met:
 - [Composer](https://getcomposer.org/)
 - [Laravel](https://laravel.com/) (5.3+)
 
+#### NPM Packages
+- [Vuejs](https://vuejs.org/) (v2)
+- [Axios](https://github.com/axios/axios)
+
+#### Current Front End Limitations
+As the package is still being developed, not all features are currently available. For now, it is recommended you disable the features in the databse by setting the booleans accordingly on the sections you are using.
+- Attachments
+- Comments
+- Private / Public Differentiation
+
 #### Instructions
 Once you have succesfully required the package, you must register the service provider in your config/app.php file.
 ```
 CodyMoorhouse\Chronicle\ChronicleServiceProvider::class,
 ```
 
-After you have registered the package you can now publish the associated files.
+After you have registered the package you can now publish the associated files. This will publish the config file as well as some default vue components
 ```
 php artisan vendor:publish --provider="CodyMoorhouse\Chronicle\ChronicleServiceProvider"
 ```
@@ -37,7 +48,39 @@ php artisan migrate
 ```
 
 ## Usage
-Under construction
+### Back End
+To use chronicle you must make a section in the databse. To help set up a quick section, you can use this command:
+```
+php artisan chronicle:section
+```
+The tag you specified will be used in the front end. You will also need a reference slug for the front end. Think of the reference slug as a 'sub-section' of a section. So basically when you create a section, you can have many notes within the section. However, notes are assigned a reference slug, and that reference slug determines which notes will be shown.
+
+#### Example: You create a chronicle section with the tag 'user-notes'
+Rather than making a new section for each different user, you simple set the ref-slug to be that users id, or some unique slug for that user. Now when a user looks at that section, they will only see notes with the same ref slug. (aka - their id/slug).
+
+### Front End
+
+Register chronicle as a component in you vue instance.
+```javascript
+Vue.component('chronicle', require('./components/chronicle/Chronicle'));
+```
+
+Use the component anywhere in your app instance. If you do not pass in a user, chronicle will display as 'read only'.
+```html
+<chronicle tag='my-section' ref-slug="customer-reference-slug" :user="{{ json_encode(Auth::user()) }}"></chronicle>
+```
+
+#### Properties
+| Property         | Required | Type    | Default      | Description                                                   |
+|------------------|----------|---------|--------------|---------------------------------------------------------------|
+| tag              | true     | String  | n/a          | The tag of the section to show                                |
+| ref-slug         | true     | String  | n/a          | A ref slug for a section, only shows notes with this ref slug |
+| show-display     | false    | Boolean | true         | Shows the display                                             |
+| show-input       | false    | Boolean | true         | Shows the input / add note button                             |
+| show-title       | false    | Boolean | true         | Shows the title vs. the pagination                            |
+| use-font-awesome | false    | Boolean | true         | Use font awesome for buttons                                  |
+| user             | false    | Object  | new Object() | A logged in user object                                       |
+
 
 ## License
 This project is covered under the MIT License. Feel free to use it wherever you like.
