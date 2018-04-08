@@ -25,8 +25,6 @@ class CreateSectionsTable extends Migration
             $table->boolean('is_comments_allowed')->default(true);
             $table->boolean('is_deleting_allowed')->default(true);
             $table->boolean('is_editing_allowed')->default(true);
-            $table->boolean('is_tasks_allowed')->default(true);
-            $table->boolean('is_approval_required')->default(false);
             $table->timestamps();
         });
     }
