@@ -37,7 +37,14 @@
                     </div>
 
                     <div class="chronicle-content">
-                        <chronicle-note v-for="note in notes" :key="note.id" :note="note" :ref-slug="refSlug" :section="section" :user="user" @open-modal="openModal" />
+                        <chronicle-note v-for="note in notes"
+                                        :key="note.id"
+                                        :note="note"
+                                        :ref-slug="refSlug"
+                                        :section="section"
+                                        :use-font-awesome="useFontAwesome"
+                                        :user="user"
+                                        @open-modal="openModal" />
                     </div>
                 </div>
             </template>
