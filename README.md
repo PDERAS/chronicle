@@ -71,15 +71,17 @@ Use the component anywhere in your app instance. If you do not pass in a user, c
 ```
 
 #### Properties
-| Property         | Required | Type    | Default      | Description                                                   |
-|------------------|----------|---------|--------------|---------------------------------------------------------------|
-| tag              | true     | String  | n/a          | The tag of the section to show                                |
-| ref-slug         | true     | String  | n/a          | A ref slug for a section, only shows notes with this ref slug |
-| show-display     | false    | Boolean | true         | Shows the display                                             |
-| show-input       | false    | Boolean | true         | Shows the input / add note button                             |
-| show-title       | false    | Boolean | true         | Shows the title vs. the pagination                            |
-| use-font-awesome | false    | Boolean | true         | Use font awesome for buttons                                  |
-| user             | false    | Object  | new Object() | A logged in user object                                       |
+| Property          | Required | Type    | Default      | Description                                                     |
+|-------------------|----------|---------|--------------|-----------------------------------------------------------------|
+| tag               | true     | String  | n/a          | The tag of the section to show                                  |
+| ref-slug          | true     | String  | n/a          | A ref slug for a section, only shows notes with this ref slug   |
+| load-font-awesome | false    | Boolean | true         | Boolean to toggle auto load of font awesome on or off           |
+| show-display      | false    | Boolean | true         | Shows the display                                               |
+| show-input        | false    | Boolean | true         | Shows the input / add note button                               |
+| show-pages        | false    | Boolean | true         | Turns off pagination in the title slot                          |
+| show-title        | false    | Boolean | true         | Turns off title in the title slot (pages will be shown instead) |
+| use-font-awesome  | false    | Boolean | true         | Use font awesome for buttons                                    |
+| user              | false    | Object  | new Object() | A logged in user object                                         |
 
 
 ## License
