@@ -79,6 +79,11 @@
         },
 
         props: {
+            loadFontAwesome: {
+                type: Boolean,
+                default: true
+            },
+
             tag: {
                 type: String,
                 required: true
@@ -138,7 +143,7 @@
         }),
 
         created() {
-            if (this.useFontAwesome && !this.isFontAwesomeLoaded()) {
+            if (this.loadFontAwesome && this.useFontAwesome && !this.isFontAwesomeLoaded()) {
                 this.loadFontAwesome();
             }
             axios.get('/sections/' + this.tag).then(r => {
