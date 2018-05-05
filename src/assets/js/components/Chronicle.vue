@@ -30,8 +30,11 @@
                             <template v-if="showTitle">
                                 {{ section.title }}
                             </template>
-                            <template v-else>
+                            <template v-else-if="showPages">
                                 Showing {{ startEntry }} to {{ endEntry }} of {{ totalEntries }}
+                            </template>
+                            <template v-else>
+                                &nbsp;
                             </template>
                         </div>
                     </div>
@@ -101,6 +104,11 @@
             },
 
             showInput: {
+                type: Boolean,
+                default: true
+            },
+
+            showPages: {
                 type: Boolean,
                 default: true
             },
