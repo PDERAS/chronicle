@@ -36,7 +36,7 @@
                         </div>
                     </div>
 
-                    <div class="chronicle-content">
+                    <div class="chronicle-content" v-if="notes.length > 0">
                         <chronicle-note v-for="note in notes"
                                         :key="note.id"
                                         :note="note"
@@ -46,6 +46,7 @@
                                         :user="user"
                                         @open-modal="openModal" />
                     </div>
+                    <div class="chronicle-content error" v-else>--- No notes could be found ---</div>
                 </div>
             </template>
 
@@ -144,7 +145,7 @@
 
         created() {
             if (this.loadFontAwesome && this.useFontAwesome && !this.isFontAwesomeLoaded()) {
-                this.loadFontAwesome();
+                this.initFontAwesome();
             }
             axios.get('/sections/' + this.tag).then(r => {
                 this.section = r.data.section;
@@ -157,6 +158,13 @@
             closeModal() {
                 this.modalNote = null;
                 this.showModal = false;
+            },
+
+            initFontAwesome() {
+                let fontAwesomeScript = document.createElement('script');
+                fontAwesomeScript.setAttribute('src', this.fontAwesomeUrl);
+                fontAwesomeScript.setAttribute('defer', '');
+                document.head.appendChild(fontAwesomeScript);
             },
 
             isFontAwesomeLoaded() {
@@ -194,13 +202,6 @@
                 });
             },
 
-            loadFontAwesome() {
-                let fontAwesomeScript = document.createElement('script');
-                fontAwesomeScript.setAttribute('src', this.fontAwesomeUrl);
-                fontAwesomeScript.setAttribute('defer', '');
-                document.head.appendChild(fontAwesomeScript);
-            },
-
             openModal(action, note = null) {
                 this.modalAction = action;
                 this.modalNote = note;
@@ -214,6 +215,12 @@
     .chronicle-content {
         border-bottom: solid thin black;
         border-top: solid thin black;
+
+        &.error {
+            padding: 10px 5px;
+            text-align: center;
+            color: #4e4e4e;
+        }
     }
 
     .chronicle-header-btns {
