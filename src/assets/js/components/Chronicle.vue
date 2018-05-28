@@ -6,23 +6,23 @@
                     <div class="chronicle-header">
                         <div class="chronicle-header-btns">
                             <button class="chronicle-btn header" @click="getNotes(currentPage)"  >
-                                <i class="fas fa-sync" v-if="useFontAwesome" />
+                                <i class="far fas fa-sync" v-if="useFontAwesome" />
                                 <div class="x-small" v-else>Refresh</div>
                             </button>
                             <button class="chronicle-btn header" :disabled="currentPage == firstPage" @click="getNotes(firstPage)">
-                                <i class="fas fa-arrow-left" v-if="useFontAwesome" />
+                                <i class="far fas fa-arrow-left" v-if="useFontAwesome" />
                                 <div class="x-small" v-else>First</div>
                             </button>
                             <button class="chronicle-btn header" :disabled="!previousPage" @click="getNotes(previousPage)">
-                                <i class="fas fa-angle-left" v-if="useFontAwesome" />
+                                <i class="far fas fa-angle-left" v-if="useFontAwesome" />
                                 <div class="x-small" v-else>Previous</div>
                             </button>
                             <button class="chronicle-btn header" :disabled="!nextPage" @click="getNotes(nextPage)">
-                                <i class="fas fa-angle-right" v-if="useFontAwesome" />
+                                <i class="far fas fa-angle-right" v-if="useFontAwesome" />
                                 <div class="x-small" v-else>Next</div>
                             </button>
                             <button class="chronicle-btn header" :disabled="currentPage == lastPage" @click="getNotes(lastPage)">
-                                <i class="fas fa-arrow-right" v-if="useFontAwesome" />
+                                <i class="far fas fa-arrow-right" v-if="useFontAwesome" />
                                 <div class="x-small" v-else>Last</div>
                             </button>
                         </div>
@@ -202,9 +202,9 @@
                     this.nextPage = this.currentPage < this.lastPage ? this.currentPage + 1: null;
                     this.previousPage = this.currentPage > this.firstPage ? this.currentPage - 1 : null;
 
-                    this.startEntry = r.data.notes.from;
-                    this.endEntry = r.data.notes.to;
-                    this.totalEntries = r.data.notes.total;
+                    this.startEntry = r.data.notes.from ? r.data.notes.from : 0;
+                    this.endEntry = r.data.notes.to ? r.data.notes.to : 0;
+                    this.totalEntries = r.data.notes.total ? r.data.notes.total : 0;
 
                     this.notes = r.data.notes.data;
                 });
