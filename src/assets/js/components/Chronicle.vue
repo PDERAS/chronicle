@@ -124,8 +124,8 @@
             },
 
             user: {
-                validator: (val) =>  { return val === null || typeof val === 'object' },
-                default: () => new Object()
+                validator: val => (val === null || typeof val === 'object') && !Array.isArray(val),
+                default: _ => new Object()
             }
         },
 
