@@ -10,6 +10,20 @@ return [
     | user. As such, you can customize the tables and the used column fields here.
     |
     */
+    'middlewares'  =>  [
+        'general'   =>  [ 'web' ],
+        'auth'      =>  [ 'web', 'auth' ]
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Previous Tables
+    |--------------------------------------------------------------------------
+    |
+    | Chronicle is a note taking library that logs notes based on the logged in
+    | user. As such, you can customize the tables and the used column fields here.
+    |
+    */
     /* Required */
     'users_table'           =>  'users',
     'users_table_id'        =>  'id',
