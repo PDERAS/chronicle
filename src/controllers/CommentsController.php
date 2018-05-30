@@ -18,6 +18,19 @@ use CodyMoorhouse\Chronicle\Requests\Comments\UpdateRequest;
 class CommentsController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('bindings');
+        foreach (config('chronicle.middlewares.auth') as $middleware) {
+            $this->middleware($middleware);
+        }
+    }
+
+    /**
      * Destroy a comment in the system.
      *
      * @param CodyMoorhouse\Chronicle\Models\Comment $comment

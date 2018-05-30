@@ -16,6 +16,18 @@ use CodyMoorhouse\Chronicle\Requests\Sections\NotesRequest;
 
 class SectionsController extends Controller
 {
+    /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('bindings');
+        foreach (config('chronicle.middlewares.general') as $middleware) {
+            $this->middleware($middleware);
+        }
+    }
 
     /**
      * Gets a section

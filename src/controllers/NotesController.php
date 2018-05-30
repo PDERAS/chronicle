@@ -19,6 +19,19 @@ use CodyMoorhouse\Chronicle\Requests\Notes\UpdateRequest;
 class NotesController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('bindings');
+        foreach (config('chronicle.middlewares.auth') as $middleware) {
+            $this->middleware($middleware);
+        }
+    }
+
+    /**
      * Destroy a note in the system.
      *
      * @param CodyMoorhouse\Chronicle\Models\Note $note

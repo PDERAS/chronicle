@@ -20,6 +20,19 @@ use CodyMoorhouse\Chronicle\Requests\Media\UpdateRequest;
 class MediaController extends Controller
 {
     /**
+     * Instantiate a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('bindings');
+        foreach (config('chronicle.middlewares.auth') as $middleware) {
+            $this->middleware($middleware);
+        }
+    }
+
+    /**
      * Destroy media in the system.
      *
      * @param CodyMoorhouse\Chronicle\Models\Media $media
