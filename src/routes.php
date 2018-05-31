@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([ 'namespace' => 'CodyMoorhouse\Chronicle\Controllers' ], function() {
     Route::group([ 'prefix' => 'sections' ], function() {
-        Route::get('/{section_id}/notes', 'SectionsController@getNotes');
-        Route::get('/{section_id}', 'SectionsController@get');
+        Route::get('/{section_tag}/notes', 'SectionsController@getNotes');
+        Route::get('/{section_tag}', 'SectionsController@get');
         Route::get('/', 'SectionsController@index');
     });
 });

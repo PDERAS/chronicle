@@ -29,16 +29,17 @@ class SectionsController extends Controller
     /**
      * Gets a section
      *
-     * @param int $section
+     * @param string $section_tag
      *
      * @return \Illuminate\Http\Response
      */
     public function get($section_id)
     {
         try {
-            return DB::transaction(function() use ($section_id) {
+            return DB::transaction(function() use ($section_tag) {
+                $section = Section::where('tag', $section_tag)->first();
                 return Response::json([
-                    'section'   =>  Section::find($section_id)
+                    'section'   =>  Section::where($section)
                 ]);
             }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
@@ -91,15 +92,15 @@ class SectionsController extends Controller
      * Gets the notes for a section
      *
      * @param CodyMoorhouse\Chronicle\Requests\Sections\NotesRequest $request
-     * @param int $section_id
+     * @param string $section_tag
      *
      * @return \Illuminate\Http\Response
      */
-    public function getNotes(NotesRequest $request, $section_id)
+    public function getNotes(NotesRequest $request, $section_tag)
     {
         try {
-            return DB::transaction(function() use ($request, $section_id) {
-                $section = Section::find($section_id);
+            return DB::transaction(function() use ($request, $section_tag) {
+                $section = Section::where('tag', $section_tag)->first();
                 $notes = $section->notes()
                     ->where('section_ref_slug', $request->slug)
                     ->orderBy('created_at', 'desc')
