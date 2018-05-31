@@ -33,7 +33,7 @@ class SectionsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function get($section_id)
+    public function get($section_tag)
     {
         try {
             return DB::transaction(function() use ($section_tag) {
