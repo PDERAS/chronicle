@@ -102,7 +102,6 @@ class MediaController extends Controller
         try {
             return DB::transaction(function() use ($request, $media_id) {
                 $media = Media::find($media_id);
-
                 $media->update([
                     'filename_original'   =>  $request->filename
                 ]);

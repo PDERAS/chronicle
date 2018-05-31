@@ -107,6 +107,7 @@ class NotesController extends Controller
     {
         try {
             return DB::transaction(function() use ($request, $note_id) {
+                $note = Note::find($note_id);
                 $note->update([
                     'description'   =>  $request->description
                 ]);

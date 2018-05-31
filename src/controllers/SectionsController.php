@@ -39,7 +39,7 @@ class SectionsController extends Controller
             return DB::transaction(function() use ($section_tag) {
                 $section = Section::where('tag', $section_tag)->first();
                 return Response::json([
-                    'section'   =>  Section::where($section)
+                    'section'   =>  $section
                 ]);
             }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
