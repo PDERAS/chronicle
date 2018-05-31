@@ -25,24 +25,22 @@ class NotesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('bindings');
-        foreach (config('chronicle.middlewares.auth') as $middleware) {
-            $this->middleware($middleware);
-        }
+        $this->middleware(config('chronicle.middlewares.auth'));
     }
 
     /**
      * Destroy a note in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Models\Note $note
      * @param CodyMoorhouse\Chronicle\Requests\Media\DestroyRequest $request
+     * @param int $note_id
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Note $note, DestroyRequest $request)
+    public function destroy(DestroyRequest $request, $note_id)
     {
         try {
-            return DB::transaction(function() use ($note, $request) {
+            return DB::transaction(function() use ($request, $note_id) {
+                $note = Note::find($note_id);
 
                 /* Delete note comments */
                 foreach ($note->comments as $comment) {
@@ -100,15 +98,15 @@ class NotesController extends Controller
     /**
      * Update a note in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Models\Note $note
      * @param CodyMoorhouse\Chronicle\Requests\Notes\UpdateRequest $request
+     * @param int $note_id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Note $note, UpdateRequest $request)
+    public function update(UpdateRequest $request, $note_id)
     {
         try {
-            return DB::transaction(function() use ($note, $request) {
+            return DB::transaction(function() use ($request, $note_id) {
                 $note->update([
                     'description'   =>  $request->description
                 ]);

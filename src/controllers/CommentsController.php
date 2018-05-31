@@ -24,25 +24,22 @@ class CommentsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('bindings');
-        foreach (config('chronicle.middlewares.auth') as $middleware) {
-            $this->middleware($middleware);
-        }
+        $this->middleware(config('chronicle.middlewares.auth'));
     }
 
     /**
      * Destroy a comment in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Models\Comment $comment
      * @param CodyMoorhouse\Chronicle\Requests\Comments\DestroyRequest $request
+     * @param int $comment_id
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment, DestroyRequest $request)
+    public function destroy(DestroyRequest $reques, Comment $comment_id)
     {
         try {
-            return DB::transaction(function() use ($comment, $request) {
-                $comment->delete();
+            return DB::transaction(function() use ($request, $comment_id) {
+                Comment::destroy($comment_id);
 
                 return Response::json([
                     'message'   =>  'Comment deleted successfully',
@@ -86,15 +83,16 @@ class CommentsController extends Controller
     /**
      * Update a comment in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Models\Comment $comment
      * @param CodyMoorhouse\Chronicle\Requests\Comments\UpdateRequest $request
+     * @param int $comment_id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Comment $comment, UpdateRequest $request)
+    public function update(UpdateRequest $request, Comment $comment_id)
     {
         try {
-            return DB::transaction(function() use ($comment, $request) {
+            return DB::transaction(function() use ($request, $comment_id) {
+                $comment = Comment::find($comment_id);
                 $comment->update([
                     'description'   =>  $request->description
                 ]);

@@ -26,25 +26,22 @@ class MediaController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('bindings');
-        foreach (config('chronicle.middlewares.auth') as $middleware) {
-            $this->middleware($middleware);
-        }
+        $this->middleware(config('chronicle.middlewares.auth'));
     }
 
     /**
      * Destroy media in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Models\Media $media
      * @param CodyMoorhouse\Chronicle\Requests\Media\DestroyRequest $request
+     * @param int $media_id
      *
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Media $media, DestroyRequest $request)
+    public function destroy(DestroyRequest $request, $media_id)
     {
         try {
-            return DB::transaction(function() use ($media, $request) {
-                $media->delete();
+            return DB::transaction(function() use ($request, $media_id) {
+                Media::destroy($media_id);
 
                 return Response::json([
                     'message'   =>  'Media deleted successfully',
@@ -95,15 +92,17 @@ class MediaController extends Controller
     /**
      * Update a media in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Models\Media $media
      * @param CodyMoorhouse\Chronicle\Requests\Media\UpdateRequest $request
+     * @param int $media_id
      *
      * @return \Illuminate\Http\Response
      */
-    public function update(Media $media, UpdateRequest $request)
+    public function update(UpdateRequest $request, $media_id)
     {
         try {
-            return DB::transaction(function() use ($media, $request) {
+            return DB::transaction(function() use ($request, $media_id) {
+                $media = Media::find($media_id);
+
                 $media->update([
                     'filename_original'   =>  $request->filename
                 ]);

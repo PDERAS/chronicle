@@ -23,25 +23,22 @@ class SectionsController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('bindings');
-        foreach (config('chronicle.middlewares.general') as $middleware) {
-            $this->middleware($middleware);
-        }
+        $this->middleware(config('chronicle.middlewares.general'));
     }
 
     /**
      * Gets a section
      *
-     * @param CodyMoorhouse\Chronicle\Models\Sections\Section $section
+     * @param int $section
      *
      * @return \Illuminate\Http\Response
      */
-    public function get(Section $section)
+    public function get($section_id)
     {
         try {
-            return DB::transaction(function() use ($section) {
+            return DB::transaction(function() use ($section_id) {
                 return Response::json([
-                    'section'   =>  $section
+                    'section'   =>  Section::find($section_id)
                 ]);
             }, config('chronicle.db_attempts'));
         } catch (Exception $e) {
@@ -94,14 +91,15 @@ class SectionsController extends Controller
      * Gets the notes for a section
      *
      * @param CodyMoorhouse\Chronicle\Requests\Sections\NotesRequest $request
-     * @param CodyMoorhouse\Chronicle\Models\Sections\Section $section
+     * @param int $section_id
      *
      * @return \Illuminate\Http\Response
      */
-    public function getNotes(NotesRequest $request, Section $section)
+    public function getNotes(NotesRequest $request, $section_id)
     {
         try {
-            return DB::transaction(function() use ($request, $section) {
+            return DB::transaction(function() use ($request, $section_id) {
+                $section = Section::find($section_id);
                 $notes = $section->notes()
                     ->where('section_ref_slug', $request->slug)
                     ->orderBy('created_at', 'desc')
