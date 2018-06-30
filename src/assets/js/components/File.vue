@@ -2,18 +2,17 @@
     <div class="chronicle-note-wrapper" @mouseover="openActionBar" @mouseleave="hideActionBar">
         <div class="chronicle-note-header">
             <span class="chronicle-note-user">{{ note.user.name }}</span>
-            <span class="chronicle-note-time">{{ formatDate(createDate(note.created_at)) }}</span>
+            <span class="chronicle-note-time">{{ formatDate(createDate(file.created_at)) }}</span>
         </div>
         <div class="chronicle-note-content">
-            <div class="chronicle-note-description">{{ note.description }}</div>
+            <div class="chronicle-note-description">{{ file.filename_original }}</div>
         </div>
 
-        <chronicle-action-bar type="notes"
-                              :note="note"
+        <chronicle-action-bar type="files"
+                              :file="file"
                               :section="section"
                               :use-font-awesome="useFontAwesome"
                               :user="user"
-                              @open-modal="openModal"
                               v-if="showActionBar" />
     </div>
 </template>
@@ -22,13 +21,18 @@
     import ChronicleActionBar from './ActionBar';
 
     export default {
-        name: 'chronicle-note',
+        name: 'chronicle-file',
 
         components: {
             ChronicleActionBar
         },
 
         props: {
+            file: {
+                type: Object,
+                required: true
+            },
+
             note: {
                 type: Object,
                 required: true
@@ -96,10 +100,6 @@
 
             hideActionBar(id) {
                 this.showActionBar = false;
-            },
-
-            openModal(action) {
-                this.$emit('open-modal', action, this.note);
             },
 
             openActionBar() {

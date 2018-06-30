@@ -16,6 +16,7 @@ use CodyMoorhouse\Chronicle\Models\Section;
 
 /* Requests */
 use CodyMoorhouse\Chronicle\Requests\Notes\DestroyRequest;
+use CodyMoorhouse\Chronicle\Requests\Notes\MediaRequest;
 use CodyMoorhouse\Chronicle\Requests\Notes\StoreRequest;
 use CodyMoorhouse\Chronicle\Requests\Notes\UpdateRequest;
 
@@ -133,6 +134,33 @@ class NotesController extends Controller
 
                 return Response::json([
                     'message'   =>  'Note updated successfully',
+                ]);
+            }, config('chronicle.db_attempts'));
+        } catch (Exception $e) {
+            return Response::json([
+                'notes'  =>  [$e]
+            ]);
+        }
+    }
+
+    /**
+     * Gets the media for a note.
+     *
+     * @param int $note_id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getMedia($note_id)
+    {
+        try {
+            return DB::transaction(function() use ($note_id) {
+                $note = Note::find($note_id);
+                $media = $note->media()
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(config('chronicle.paginate_amount'));
+
+                return Response::json([
+                    'files'   =>  $media
                 ]);
             }, config('chronicle.db_attempts'));
         } catch (Exception $e) {

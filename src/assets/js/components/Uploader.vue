@@ -113,7 +113,7 @@
                 var i = document.createElement('i');
 
                 div.classList.add('default-preview');
-                i.classList.add('far', 'fa-file-image');
+                i.classList.add('far', 'fas', 'fa-file-image');
 
                 div.appendChild(i);
 

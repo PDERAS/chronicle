@@ -16,6 +16,7 @@ Route::group([ 'namespace' => 'CodyMoorhouse\Chronicle\Controllers' ], function(
     Route::resource('/comments', 'CommentsController', [ 'only' => [
         'destroy', 'store', 'update'
     ]]);
+
     Route::resource('/media', 'MediaController', [
         'parameters' => [
             'media' => 'media'
@@ -24,6 +25,8 @@ Route::group([ 'namespace' => 'CodyMoorhouse\Chronicle\Controllers' ], function(
             'destroy', 'store', 'update'
         ]
     ]);
+
+    Route::get('/notes/{note}/files', 'NotesController@getMedia');
     Route::resource('/notes', 'NotesController', [ 'only' => [
         'destroy', 'store', 'update'
     ]]);

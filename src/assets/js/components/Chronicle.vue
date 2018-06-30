@@ -63,6 +63,7 @@
                              :note="modalNote"
                              :ref-slug="refSlug"
                              :section="section"
+                             :user="user"
                              @get-notes="getNotes(currentPage)"
                              @close-modal="closeModal"
                              v-if="showModal" />

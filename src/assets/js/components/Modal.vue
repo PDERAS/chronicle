@@ -50,6 +50,24 @@
                     </div>
                 </template>
 
+                <!-- View Files !-->
+                <template v-else-if="action == 'files'">
+                    <div class="chronicle-modal-header">
+                        Files
+                        <span class="chronicle-modal-close" @click="emitCloseModal">&times;</span>
+                    </div>
+                    <div class="chronicle-modal-content">
+                        <div class="chronicle-modal-content">
+                            <chronicle-files :note="note" :section="section" :user="user" />
+                        </div>
+                    </div>
+                    <div class="chronicle-modal-footer">
+                        <button class="chronicle-btn block" @click="emitCloseModal">
+                            Close
+                        </button>
+                    </div>
+                </template>
+
                 <!-- Delete notes !-->
                 <template v-else-if="action == 'delete'">
                     <div class="chronicle-modal-header">
@@ -69,6 +87,7 @@
 </template>
 
 <script>
+    import ChronicleFiles from './Files';
     import ChronicleInput from './Input';
     import ChronicleUploader from './Uploader';
 
@@ -76,6 +95,7 @@
         name: 'chronicle-modal',
 
         components: {
+            ChronicleFiles,
             ChronicleInput,
             ChronicleUploader
         },
@@ -97,6 +117,11 @@
             },
 
             section: {
+                type: Object,
+                required: true
+            },
+
+            user: {
                 type: Object,
                 required: true
             }
