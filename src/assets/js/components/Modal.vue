@@ -11,6 +11,7 @@
                     </div>
                     <div class="chronicle-modal-content">
                         <chronicle-input v-model="description" />
+                        <chronicle-uploader v-model="files" />
                     </div>
                     <div class="chronicle-modal-footer">
                         <button class="chronicle-btn block" @click="store">
@@ -69,12 +70,14 @@
 
 <script>
     import ChronicleInput from './Input';
+    import ChronicleUploader from './Uploader';
 
     export default {
         name: 'chronicle-modal',
 
         components: {
-            ChronicleInput
+            ChronicleInput,
+            ChronicleUploader
         },
 
         props: {
@@ -101,6 +104,7 @@
 
         data: () => ({
             description: null,
+            files: []
         }),
 
         created() {

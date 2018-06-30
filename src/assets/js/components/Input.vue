@@ -1,6 +1,9 @@
 <template>
     <div class="chronicle-input">
-        <textarea placeholder="Enter your note..." @input="$emit('input', description)" v-model="description" :rows="line_breaks + 1" />
+        <textarea placeholder="Enter your note..."
+                  v-model="description"
+                  :rows="line_breaks + 1"
+                  @input="$emit('input', description)" />
     </div>
 </template>
 
@@ -41,6 +44,7 @@
             min-height: 50px;
             box-sizing: border-box;
             outline: none;
+            border-color: #999;
         }
     }
 </style>
