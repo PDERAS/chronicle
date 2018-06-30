@@ -26,10 +26,10 @@
         </template>
 
         <template v-if="type == 'files'">
-            <button class="chronicle-btn action" @click="openFile">
+            <a class="chronicle-btn action" :href="'/media/' + this.file.id + '/download'" >
                 <i class="far fas fa-eye" v-if="useFontAwesome" />
                 <div class="x-small" v-else>View</div>
-            </button>
+            </a>
             <button class="chronicle-btn action" @click="openModal('delete')" v-if="section.is_deleting_allowed && file.user_id == user.id">
                 <i class="far fas fa-trash" v-if="useFontAwesome" />
                 <div class="x-small" v-else>Delete</div>
@@ -79,10 +79,6 @@
         methods: {
             openModal(action) {
                 this.$emit('open-modal', action);
-            },
-
-            openFile() {
-
             }
         }
     }

@@ -116,4 +116,31 @@ class MediaController extends Controller
             ]);
         }
     }
+
+    /**
+     * Downloads a media from the system.
+     *
+     * @param int $media_id
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function download($media_id)
+    {
+        try {
+            return DB::transaction(function() use ($media_id) {
+                $media = Media::find($media_id);
+
+                $path = Storage::disk(config('chronicle.disk'))
+                    ->getDriver()
+                    ->getAdapter()
+                    ->applyPathPrefix($media->getOriginal('filename'));
+
+                return response()->file($path);
+            }, config('chronicle.db_attempts'));
+        } catch (Exception $e) {
+            return Response::json([
+                'comments'  =>  [$e]
+            ]);
+        }
+    }
 }
