@@ -5,7 +5,7 @@
             <span class="chronicle-note-time">{{ formatDate(createDate(file.created_at)) }}</span>
         </div>
         <div class="chronicle-note-content">
-            <div class="chronicle-note-description">{{ file.filename_original }}</div>
+            <div class="chronicle-note-description">{{ file.filename }}</div>
         </div>
 
         <chronicle-action-bar type="files"

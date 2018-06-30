@@ -40,6 +40,7 @@ class Media extends Model
      * @var array
      */
     protected $hidden = [
+        'filename_original',
         'deleted_at',
         'updated_at',
     ];
@@ -56,5 +57,15 @@ class Media extends Model
         $model = parent::newInstance($attributes, $exists);
         $model->setTable(config('chronicle.media_table'));
         return $model;
+    }
+
+    /**
+     * Accessor for the filename attribute
+     *
+     * @return string
+     */
+    public function getFilenameAttribute()
+    {
+        return $this->attributes['filename_original'];
     }
 }
