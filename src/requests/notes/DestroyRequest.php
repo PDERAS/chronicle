@@ -5,6 +5,9 @@ namespace CodyMoorhouse\Chronicle\Requests\Notes;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
+/* Models */
+use CodyMoorhouse\Chronicle\Models\Note;
+
 class DestroyRequest extends FormRequest
 {
     /**
@@ -14,7 +17,8 @@ class DestroyRequest extends FormRequest
      */
     public function authorize()
     {
-        return $this->route('note')->user_id == Auth::id();
+        $note = Note::find($this->route('note'));
+        return $note->user_id == Auth::id();
     }
 
     /**

@@ -129,7 +129,9 @@
 
             store() {
                 var formData = new FormData();
-                formData.append('description', this.description);
+                if (this.description) {
+                    formData.append('description', this.description);
+                }
                 formData.append('section_tag', this.section.tag);
                 formData.append('section_ref', this.refSlug);
 
