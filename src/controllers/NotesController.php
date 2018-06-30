@@ -5,9 +5,12 @@ namespace CodyMoorhouse\Chronicle\Controllers;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 
 /* Models */
+use CodyMoorhouse\Chronicle\Models\Media;
 use CodyMoorhouse\Chronicle\Models\Note;
 use CodyMoorhouse\Chronicle\Models\Section;
 
@@ -77,12 +80,28 @@ class NotesController extends Controller
         try {
             return DB::transaction(function() use ($request) {
                 $section = Section::where('tag', $request->section_tag)->first();
-                Note::create([
+                $note = Note::create([
                     'description'       =>  $request->description,
                     'section_id'        =>  $section->id,
                     'section_ref_slug'  =>  $request->section_ref,
                     'user_id'           =>  Auth::id()
                 ]);
+
+                if ($section->is_attachments_allowed && $request->has('files')) {
+                    foreach ($request->file('files') as $file) {
+                        $filename = md5($file->getClientOriginalName() . microtime()) . "." . ($file->clientExtension());
+                        Media::create([
+                            'filename'          =>  $filename,
+                            'filename_original' =>  $file->getClientOriginalName(),
+                            'file_mime'         =>  $file->getMimeType(),
+                            'note_id'           =>  $note->id,
+                            'user_id'           =>  Auth::id()
+                        ]);
+
+                        /* Save file to disk */
+                        Storage::disk(config('chronicle.disk'))->put($filename, File::get($file));
+                    }
+                }
 
                 return Response::json([
                     'message'   =>  'Note created successfully',

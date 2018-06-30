@@ -29,6 +29,8 @@ class StoreRequest extends FormRequest
             'description'   =>  'required|string',
             'section_tag'   =>  'required|exists:' . $sections_table . ',tag',
             'section_ref'   =>  'required|string',
+            'files'         =>  'array',
+            'files.*'       =>  'file',
         ];
     }
 }

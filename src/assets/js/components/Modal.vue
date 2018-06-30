@@ -11,7 +11,7 @@
                     </div>
                     <div class="chronicle-modal-content">
                         <chronicle-input v-model="description" />
-                        <chronicle-uploader v-model="files" />
+                        <chronicle-uploader v-model="files" v-if="section.is_attachments_allowed" />
                     </div>
                     <div class="chronicle-modal-footer">
                         <button class="chronicle-btn block" @click="store">
@@ -128,12 +128,16 @@
             },
 
             store() {
-                var params = {
-                    description: this.description,
-                    section_tag: this.section.tag,
-                    section_ref: this.refSlug
-                }
-                axios.post('/notes', params).then(() => {
+                var formData = new FormData();
+                formData.append('description', this.description);
+                formData.append('section_tag', this.section.tag);
+                formData.append('section_ref', this.refSlug);
+
+                this.files.forEach(f => {
+                     formData.append('files[]', f, f.name);
+                });
+
+                axios.post('/notes', formData).then(() => {
                     this.description = null;
                     this.$emit('get-notes', this.section.tag);
                     this.emitCloseModal();
