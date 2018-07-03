@@ -26,7 +26,12 @@ class MediaController extends Controller
      */
     public function __construct()
     {
-        $this->middleware(config('chronicle.middlewares.auth'));
+        $this->middleware(config('chronicle.middlewares.api'), [
+           'except' => 'download'
+        ]);
+        $this->middleware(config('chronicle.middlewares.auth'), [
+           'only' => 'download'
+        ]);
     }
 
     /**

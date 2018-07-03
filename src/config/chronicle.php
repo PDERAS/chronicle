@@ -12,7 +12,8 @@ return [
     */
     'middlewares'  =>  [
         'general'   =>  [ 'web' ],
-        'auth'      =>  [ 'web', 'auth' ]
+        'auth'      =>  [ 'web', 'auth' ],
+        'api'       =>  [ 'api' ],
     ],
 
     /*
