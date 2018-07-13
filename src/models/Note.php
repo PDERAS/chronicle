@@ -79,6 +79,9 @@ class Note extends Model
     public function user()
     {
         return $this->belongsTo(config('chronicle.users_model'))
-            ->select(config('chronicle.users_table_name') . ' as name');
+                    ->select(
+                        config('chronicle.users_table_name') . ' as name',
+                        config('chronicle.users_table_id') . ' as id'
+                    );
     }
 }
