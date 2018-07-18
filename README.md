@@ -26,7 +26,7 @@ To use this package, the following requiremenst must be met:
 - [Axios](https://github.com/axios/axios)
 
 #### Current Front End Limitations
-As the package is still being developed, not all features are currently available. For now, it is recommended you disable the features in the databse by setting the booleans accordingly on the sections you are using.
+As the package is still being developed, not all features are currently available. For now, it is recommended you disable the features in the database by setting the booleans accordingly on the sections you are using.
 - Attachments
 - Comments
 - Private / Public Differentiation
@@ -49,18 +49,18 @@ php artisan migrate
 
 ## Usage
 ### Back End
-To use chronicle you must make a section in the databse. To help set up a quick section, you can use this command:
+To use chronicle you must make a section in the database. To help set up a quick section, you can use this command:
 ```
 php artisan chronicle:section
 ```
 The tag you specified will be used in the front end. You will also need a reference slug for the front end. Think of the reference slug as a 'sub-section' of a section. So basically when you create a section, you can have many notes within the section. However, notes are assigned a reference slug, and that reference slug determines which notes will be shown.
 
 #### Example: You create a chronicle section with the tag 'user-notes'
-Rather than making a new section for each different user, you simple set the ref-slug to be that users id, or some unique slug for that user. Now when a user looks at that section, they will only see notes with the same ref slug. (aka - their id/slug).
+Rather than making a new section for each different user, you simply set the ref-slug to be that users id, or some unique slug for that user. Now when a user looks at that section, they will only see notes with the same ref slug. (aka - their id/slug).
 
 ### Front End
 
-Register chronicle as a component in you vue instance.
+Register chronicle as a component in your vue instance.
 ```javascript
 Vue.component('chronicle', require('./components/chronicle/Chronicle'));
 ```
