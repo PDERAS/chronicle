@@ -20,6 +20,7 @@ This package is designed for Laravel that lets users interact with eachother usi
 To use this package, the following requiremenst must be met:
 - [Composer](https://getcomposer.org/)
 - [Laravel](https://laravel.com/) (5.3+)
+- [Carbon](https://carbon.nesbot.com/)
 
 #### NPM Packages
 - [Vuejs](https://vuejs.org/) (v2)
@@ -32,7 +33,7 @@ As the package is still being developed, not all features are currently availabl
 - Private / Public Differentiation
 
 #### Instructions
-Once you have succesfully required the package, you must register the service provider in your config/app.php file.
+Once you have succesfully required the package, (v5.3 only) you must register the service provider in your config/app.php file.
 ```
 CodyMoorhouse\Chronicle\ChronicleServiceProvider::class,
 ```

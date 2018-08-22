@@ -5,6 +5,8 @@ namespace CodyMoorhouse\Chronicle\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use Carbon\Carbon;
+
 class Note extends Model
 {
     use SoftDeletes;
@@ -55,6 +57,17 @@ class Note extends Model
         $model = parent::newInstance($attributes, $exists);
         $model->setTable(config('chronicle.notes_table'));
         return $model;
+    }
+
+    /**
+     * Get the created at attribute
+     *
+     * @param  string  $value
+     * @return string
+     */
+    public function getCreatedAtAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->toIso8601ZuluString() : null;
     }
 
     /**

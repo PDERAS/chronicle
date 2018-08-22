@@ -56,15 +56,11 @@
 
         methods: {
             createDate(timestamp) {
-                if (!timestamp.match(/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01]) ([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/)) {
+                if (!timestamp.match(/^\d{4}-[01]{1}\d{1}-[0-3]{1}\d{1}T[0-2]{1}\d{1}:[0-6]{1}\d{1}:[0-6]{1}\d{1}Z$/)) {
                     throw new Error("Format must be: YYYY-mm-dd hh-mm-ss");
                 }
 
-                var a = timestamp.split(" ");
-                var d = a[0].split("-");
-                var t = a[1].split(":");
-
-                return new Date(Date.UTC(d[0],(d[1]),d[2],t[0],t[1],t[2]));
+                return new Date(timestamp);
             },
 
             formatDate(date) {
