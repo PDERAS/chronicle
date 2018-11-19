@@ -102,7 +102,7 @@ class SectionsController extends Controller
             return DB::transaction(function() use ($request, $section_tag) {
                 $section = Section::where('tag', $section_tag)->first();
                 $notes = $section->notes()
-                    ->where('section_ref_slug', $request->slug)
+                    ->whereRaw("BINARY section_ref_slug = '$request->slug'")
                     ->orderBy('created_at', 'desc')
                     ->paginate(config('chronicle.paginate_amount'));
 
