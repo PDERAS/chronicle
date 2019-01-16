@@ -19,6 +19,7 @@ use CodyMoorhouse\Chronicle\Requests\Notes\DestroyRequest;
 use CodyMoorhouse\Chronicle\Requests\Notes\MediaRequest;
 use CodyMoorhouse\Chronicle\Requests\Notes\StoreRequest;
 use CodyMoorhouse\Chronicle\Requests\Notes\UpdateRequest;
+use CodyMoorhouse\Chronicle\Requests\Notes\GetMediaRequest;
 
 class NotesController extends Controller
 {
@@ -146,18 +147,19 @@ class NotesController extends Controller
     /**
      * Gets the media for a note.
      *
+     * @param CodyMoorhouse\Chronicle\Requests\Notes\GetMediaRequest $request
      * @param int $note_id
      *
      * @return \Illuminate\Http\Response
      */
-    public function getMedia($note_id)
+    public function getMedia(GetMediaRequest $request, $note_id)
     {
         try {
-            return DB::transaction(function() use ($note_id) {
+            return DB::transaction(function() use ($note_id, $request) {
                 $note = Note::find($note_id);
                 $media = $note->media()
                     ->orderBy('created_at', 'desc')
-                    ->paginate(config('chronicle.paginate_amount'));
+                    ->paginate($request->input('per_page', config('chronicle.paginate_amount')));
 
                 return Response::json([
                     'files'   =>  $media
