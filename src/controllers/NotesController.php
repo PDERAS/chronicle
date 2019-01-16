@@ -157,9 +157,16 @@ class NotesController extends Controller
         try {
             return DB::transaction(function() use ($note_id, $request) {
                 $note = Note::find($note_id);
+
                 $media = $note->media()
                     ->orderBy('created_at', 'desc')
                     ->paginate($request->input('per_page', config('chronicle.paginate_amount')));
+
+                if ($request->input('encoded', false)) {
+                    collect($media->items())
+                        ->each
+                        ->setAppends(['encoded']);
+                }
 
                 return Response::json([
                     'files'   =>  $media

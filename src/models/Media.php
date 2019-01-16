@@ -3,8 +3,9 @@
 namespace CodyMoorhouse\Chronicle\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Database\Eloquent\SoftDeletes;
+
+use Illuminate\Support\Facades\Storage;
 
 class Media extends Model
 {
@@ -67,5 +68,22 @@ class Media extends Model
     public function getFilenameAttribute()
     {
         return $this->attributes['filename_original'];
+    }
+
+    /**
+     * Accessor for the b64 encoded image
+     *
+     * @return string
+     */
+    public function getEncodedAttribute()
+    {
+        // ensure its an image
+        if (substr( $this->file_mime, 0, 6 ) !== "image/") {
+            return '';
+        }
+
+        $image = base64_encode(Storage::get($this->getOriginal('filename')));
+
+        return "data:$this->file_mime;base64,{$image}";
     }
 }
