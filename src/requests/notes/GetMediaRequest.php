@@ -24,7 +24,8 @@ class GetMediaRequest extends FormRequest
     public function rules()
     {
         return [
-            'per_page' => 'numeric'
+            'per_page'  => 'numeric',
+            'encoded'   => 'boolean'
         ];
     }
 }
