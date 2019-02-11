@@ -24,16 +24,6 @@ use CodyMoorhouse\Chronicle\Requests\Notes\GetMediaRequest;
 class NotesController extends Controller
 {
     /**
-     * Instantiate a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware(config('chronicle.middlewares.api'));
-    }
-
-    /**
      * Destroy a note in the system.
      *
      * @param CodyMoorhouse\Chronicle\Requests\Media\DestroyRequest $request
