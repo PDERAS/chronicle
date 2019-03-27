@@ -87,7 +87,7 @@
                     "December"
                 ];
 
-                var returnVal = months[date.getMonth()] + ' ' + date.getDate() + ', ' + date.getFullYear();
+                var returnVal = months[date.getMonth() - 1] + ' ' + date.getDate() + ', ' + date.getFullYear();
 
                 var hours = date.getHours() % 12 == 0 ? 12 : date.getHours() % 12;
                 var mins = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
