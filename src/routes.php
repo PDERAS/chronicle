@@ -28,7 +28,6 @@ Route::group([ 'namespace' => 'CodyMoorhouse\Chronicle\Controllers' ], function(
         });
     };
 
-
     // API Routes
     Route::group([
         'middleware' => config('chronicle.middlewares.api'),
