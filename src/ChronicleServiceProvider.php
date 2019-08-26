@@ -17,7 +17,6 @@ class ChronicleServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/config/chronicle.php', 'chronicle');
-        $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->loadRoutesFrom(__DIR__ .'/routes.php');
     }
 
@@ -30,11 +29,15 @@ class ChronicleServiceProvider extends ServiceProvider
     {
         $this->publishes([
             __DIR__.'/config/chronicle.php' => config_path('chronicle.php'),
-        ]);
+        ], 'config');
 
         $this->publishes([
             __DIR__.'/assets/js/components' => base_path('resources/assets/js/components/chronicle'),
         ], 'chronicle-components');
+
+        $this->publishes([
+            __DIR__.'/database/migrations' => database_path('migrations')
+        ], 'migrations');
 
         if ($this->app->runningInConsole()) {
             $this->commands([
