@@ -11,7 +11,7 @@ Route::group([ 'namespace' => 'CodyMoorhouse\Chronicle\Controllers' ], function(
         ]);
 
         Route::get('/media/{media}/download', 'MediaController@download');
-        Route::resource('/media/{media}', 'MediaController', [
+        Route::resource('/media', 'MediaController', [
             'only' => ['destroy', 'store', 'update']
         ]);
 
