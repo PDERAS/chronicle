@@ -1,10 +1,10 @@
 <?php
-namespace CodyMoorhouse\Chronicle\Commands;
+namespace Pderas\Chronicle\Commands;
 
 use Illuminate\Console\Command;
 
 /* Models */
-use CodyMoorhouse\Chronicle\Models\Section;
+use Pderas\Chronicle\Models\Section;
 
 class SectionCommand extends Command
 {
@@ -27,7 +27,7 @@ class SectionCommand extends Command
     /**
      * Execute the console command.
      *
-     * @param  \CodyMoorhouse\Chronicle\Models\Section $section
+     * @param  \Pderas\Chronicle\Models\Section $section
      * @return void
      */
     public function handle()

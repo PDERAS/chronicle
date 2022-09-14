@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Controllers;
+namespace Pderas\Chronicle\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,19 +10,19 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 
 /* Models */
-use CodyMoorhouse\Chronicle\Models\Media;
+use Pderas\Chronicle\Models\Media;
 
 /* Requests */
-use CodyMoorhouse\Chronicle\Requests\Media\DestroyRequest;
-use CodyMoorhouse\Chronicle\Requests\Media\StoreRequest;
-use CodyMoorhouse\Chronicle\Requests\Media\UpdateRequest;
+use Pderas\Chronicle\Requests\Media\DestroyRequest;
+use Pderas\Chronicle\Requests\Media\StoreRequest;
+use Pderas\Chronicle\Requests\Media\UpdateRequest;
 
 class MediaController extends Controller
 {
     /**
      * Destroy media in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Media\DestroyRequest $request
+     * @param Pderas\Chronicle\Requests\Media\DestroyRequest $request
      * @param int $media_id
      *
      * @return \Illuminate\Http\Response
@@ -47,7 +47,7 @@ class MediaController extends Controller
     /**
      * Stores media into a note.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Media\StoreRequest $request
+     * @param Pderas\Chronicle\Requests\Media\StoreRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -82,7 +82,7 @@ class MediaController extends Controller
     /**
      * Update a media in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Media\UpdateRequest $request
+     * @param Pderas\Chronicle\Requests\Media\UpdateRequest $request
      * @param int $media_id
      *
      * @return \Illuminate\Http\Response

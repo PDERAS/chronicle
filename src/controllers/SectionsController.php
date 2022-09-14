@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Controllers;
+namespace Pderas\Chronicle\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Schema;
 
 /* Models */
-use CodyMoorhouse\Chronicle\Models\Section;
+use Pderas\Chronicle\Models\Section;
 
 /* Requests */
-use CodyMoorhouse\Chronicle\Requests\Sections\IndexRequest;
-use CodyMoorhouse\Chronicle\Requests\Sections\NotesRequest;
+use Pderas\Chronicle\Requests\Sections\IndexRequest;
+use Pderas\Chronicle\Requests\Sections\NotesRequest;
 
 class SectionsController extends Controller
 {
@@ -42,7 +42,7 @@ class SectionsController extends Controller
     /**
      * Get a listing of sections based on the $request input parameters.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Sections\IndexRequest $request
+     * @param Pderas\Chronicle\Requests\Sections\IndexRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -81,7 +81,7 @@ class SectionsController extends Controller
     /**
      * Gets the notes for a section
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Sections\NotesRequest $request
+     * @param Pderas\Chronicle\Requests\Sections\NotesRequest $request
      * @param string $section_tag
      *
      * @return \Illuminate\Http\Response

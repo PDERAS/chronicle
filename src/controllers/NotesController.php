@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Controllers;
+namespace Pderas\Chronicle\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -10,23 +10,23 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Response;
 
 /* Models */
-use CodyMoorhouse\Chronicle\Models\Media;
-use CodyMoorhouse\Chronicle\Models\Note;
-use CodyMoorhouse\Chronicle\Models\Section;
+use Pderas\Chronicle\Models\Media;
+use Pderas\Chronicle\Models\Note;
+use Pderas\Chronicle\Models\Section;
 
 /* Requests */
-use CodyMoorhouse\Chronicle\Requests\Notes\DestroyRequest;
-use CodyMoorhouse\Chronicle\Requests\Notes\MediaRequest;
-use CodyMoorhouse\Chronicle\Requests\Notes\StoreRequest;
-use CodyMoorhouse\Chronicle\Requests\Notes\UpdateRequest;
-use CodyMoorhouse\Chronicle\Requests\Notes\GetMediaRequest;
+use Pderas\Chronicle\Requests\Notes\DestroyRequest;
+use Pderas\Chronicle\Requests\Notes\MediaRequest;
+use Pderas\Chronicle\Requests\Notes\StoreRequest;
+use Pderas\Chronicle\Requests\Notes\UpdateRequest;
+use Pderas\Chronicle\Requests\Notes\GetMediaRequest;
 
 class NotesController extends Controller
 {
     /**
      * Destroy a note in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Media\DestroyRequest $request
+     * @param Pderas\Chronicle\Requests\Media\DestroyRequest $request
      * @param int $note_id
      *
      * @return \Illuminate\Http\Response
@@ -63,7 +63,7 @@ class NotesController extends Controller
     /**
      * Store a new note into a section.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Notes\StoreRequest $request
+     * @param Pderas\Chronicle\Requests\Notes\StoreRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -109,7 +109,7 @@ class NotesController extends Controller
     /**
      * Update a note in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Notes\UpdateRequest $request
+     * @param Pderas\Chronicle\Requests\Notes\UpdateRequest $request
      * @param int $note_id
      *
      * @return \Illuminate\Http\Response
@@ -137,7 +137,7 @@ class NotesController extends Controller
     /**
      * Gets the media for a note.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Notes\GetMediaRequest $request
+     * @param Pderas\Chronicle\Requests\Notes\GetMediaRequest $request
      * @param int $note_id
      *
      * @return \Illuminate\Http\Response

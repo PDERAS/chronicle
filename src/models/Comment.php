@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Models;
+namespace Pderas\Chronicle\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

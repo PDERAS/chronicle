@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Controllers;
+namespace Pderas\Chronicle\Controllers;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -8,19 +8,19 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 /* Models */
-use CodyMoorhouse\Chronicle\Models\Comment;
+use Pderas\Chronicle\Models\Comment;
 
 /* Requests */
-use CodyMoorhouse\Chronicle\Requests\Comments\DestroyRequest;
-use CodyMoorhouse\Chronicle\Requests\Comments\StoreRequest;
-use CodyMoorhouse\Chronicle\Requests\Comments\UpdateRequest;
+use Pderas\Chronicle\Requests\Comments\DestroyRequest;
+use Pderas\Chronicle\Requests\Comments\StoreRequest;
+use Pderas\Chronicle\Requests\Comments\UpdateRequest;
 
 class CommentsController extends Controller
 {
     /**
      * Destroy a comment in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Comments\DestroyRequest $request
+     * @param Pderas\Chronicle\Requests\Comments\DestroyRequest $request
      * @param int $comment_id
      *
      * @return \Illuminate\Http\Response
@@ -45,7 +45,7 @@ class CommentsController extends Controller
     /**
      * Store a new comment into a note.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Comments\StoreRequest $request
+     * @param Pderas\Chronicle\Requests\Comments\StoreRequest $request
      *
      * @return \Illuminate\Http\Response
      */
@@ -73,7 +73,7 @@ class CommentsController extends Controller
     /**
      * Update a comment in the system.
      *
-     * @param CodyMoorhouse\Chronicle\Requests\Comments\UpdateRequest $request
+     * @param Pderas\Chronicle\Requests\Comments\UpdateRequest $request
      * @param int $comment_id
      *
      * @return \Illuminate\Http\Response
