@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Models;
+namespace Pderas\Chronicle\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -71,6 +71,6 @@ class Section extends Model
      */
     public function notes()
     {
-        return $this->hasMany('CodyMoorhouse\Chronicle\Models\Note');
+        return $this->hasMany('Pderas\Chronicle\Models\Note');
     }
 }

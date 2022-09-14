@@ -1,11 +1,11 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle;
+namespace Pderas\Chronicle;
 
 use Illuminate\Support\ServiceProvider;
 
 /* Command */
-use CodyMoorhouse\Chronicle\Commands\SectionCommand;
+use Pderas\Chronicle\Commands\SectionCommand;
 
 class ChronicleServiceProvider extends ServiceProvider
 {

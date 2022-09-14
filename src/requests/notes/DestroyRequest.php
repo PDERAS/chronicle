@@ -1,12 +1,12 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Requests\Notes;
+namespace Pderas\Chronicle\Requests\Notes;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
 /* Models */
-use CodyMoorhouse\Chronicle\Models\Note;
+use Pderas\Chronicle\Models\Note;
 
 class DestroyRequest extends FormRequest
 {

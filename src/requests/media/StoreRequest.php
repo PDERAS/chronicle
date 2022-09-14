@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Requests\Media;
+namespace Pderas\Chronicle\Requests\Media;
 
 use Illuminate\Foundation\Http\FormRequest;
 

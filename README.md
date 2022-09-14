@@ -1,6 +1,6 @@
 # Chronicle
 ```
-composer require codymoorhouse/chronicle
+composer require pderas/chronicle
 ```
 
 ### Table Of Contents
@@ -35,12 +35,12 @@ As the package is still being developed, not all features are currently availabl
 #### Instructions
 Once you have succesfully required the package, (v5.3 only) you must register the service provider in your config/app.php file.
 ```
-CodyMoorhouse\Chronicle\ChronicleServiceProvider::class,
+Pderas\Chronicle\ChronicleServiceProvider::class,
 ```
 
 After you have registered the package you can now publish the associated files. This will publish the config file as well as some default vue components
 ```
-php artisan vendor:publish --provider="CodyMoorhouse\Chronicle\ChronicleServiceProvider"
+php artisan vendor:publish --provider="Pderas\Chronicle\ChronicleServiceProvider"
 ```
 
 Before you run the migrations, you can look at the `config/chronicle.php` file and update the values and models as needed, or just use the defaults. Then you may run the migration command to set up all the required tables:

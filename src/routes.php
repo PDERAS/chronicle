@@ -1,10 +1,10 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle;
+namespace Pderas\Chronicle;
 
 use Illuminate\Support\Facades\Route;
 
-Route::group([ 'namespace' => 'CodyMoorhouse\Chronicle\Controllers' ], function() {
+Route::group([ 'namespace' => 'Pderas\Chronicle\Controllers' ], function() {
     $routes = function () {
         Route::resource('/comments', 'CommentsController',
             [ 'only' => [ 'destroy', 'store', 'update' ]

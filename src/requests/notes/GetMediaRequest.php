@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Requests\Notes;
+namespace Pderas\Chronicle\Requests\Notes;
 
 use Illuminate\Foundation\Http\FormRequest;
 

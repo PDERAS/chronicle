@@ -1,6 +1,6 @@
 <?php
 
-namespace CodyMoorhouse\Chronicle\Models;
+namespace Pderas\Chronicle\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -75,7 +75,7 @@ class Note extends Model
      */
     public function comments()
     {
-        return $this->hasMany('CodyMoorhouse\Chronicle\Models\Comment');
+        return $this->hasMany('Pderas\Chronicle\Models\Comment');
     }
 
     /**
@@ -83,7 +83,7 @@ class Note extends Model
      */
     public function media()
     {
-        return $this->hasMany('CodyMoorhouse\Chronicle\Models\Media');
+        return $this->hasMany('Pderas\Chronicle\Models\Media');
     }
 
     /**

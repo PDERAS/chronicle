@@ -2,7 +2,7 @@
     "name": "pderas/chronicle",
     "description": "A note sharing library that lets users interact with each other using file uploads and comments.",
     "keywords": ["notes", "files", "comments", "chronicle", "laravel"],
-    "homepage": "https://github.com/codymoorhouse/chronicle",
+    "homepage": "https://https://github.com/PDERAS/chronicle",
     "type": "library",
     "license": "ISC",
     "authors": [
@@ -12,14 +12,12 @@
         }
     ],
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/database": "~5.1",
-        "illuminate/support": "~5.1",
-        "illuminate/routing": "~5.1"
+        "php": "^7.2",
+        "laravel/framework": "^8.0"
     },
     "autoload": {
         "psr-4": {
-            "CodyMoorhouse\\Chronicle\\": "src/"
+            "Pderas\\Chronicle\\": "src/"
         }
     },
     "extra": {
@@ -28,7 +26,7 @@
         },
         "laravel": {
             "providers": [
-                "CodyMoorhouse\\Chronicle\\ChronicleServiceProvider"
+                "Pderas\\Chronicle\\ChronicleServiceProvider"
             ]
         }
     },
